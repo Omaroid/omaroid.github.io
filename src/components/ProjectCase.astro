@@ -1,5 +1,6 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import TechLogo from './TechLogo.astro';
 import { otherCopy, pathFor, type Lang } from '../data/i18n';
 import { getProject } from '../data/projects.localized';
 
@@ -57,7 +58,7 @@ const t = otherCopy[lang];
         <div><dt>{t.visibility}</dt><dd>{t.visibilityValue}</dd></div>
         <div><dt>{t.validation}</dt><dd>{t.validationValue}</dd></div>
       </dl>
-      <div class="case-stack">{project.stack.map(tech=><span>{tech}</span>)}</div>
+      <div class="case-stack">{project.stack.map(tech=><span><TechLogo name={tech} />{tech}</span>)}</div>
     </aside>
   </div>
 </Shell>
