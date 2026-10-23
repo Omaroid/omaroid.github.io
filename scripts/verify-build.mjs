@@ -22,7 +22,7 @@ for (const path of paths) {
 }
 
 const home = readFileSync(root + 'index.html', 'utf8');
-assert(home.includes('Complex data.') && home.includes('Useful products'), 'Hero not generated');
+assert(home.includes('La data complexe.') && home.includes('Des solutions utiles'), 'French hero not generated');
 assert(home.match(/class="project-card"/g)?.length === 6, 'Exactly six flagship projects expected');
 assert(home.includes('data-filter="all"'), 'Filter interaction missing');
 assert(!home.includes('NEXTAUTH_SECRET') && !home.includes('OPENAI_API_KEY'), 'Sensitive variable label in generated output');
@@ -47,7 +47,7 @@ const frenchHome = readFileSync(root + 'index.html', 'utf8');
 const englishHome = readFileSync(root + 'en/index.html', 'utf8');
 assert(frenchHome.includes('lang="fr"'), 'Home must be primarily French');
 assert(frenchHome.includes('Tech Lead Data'), 'French hero missing current role');
-assert(englishHome.includes('Tech Lead Data'), 'English hero missing current role');
+assert(englishHome.includes('Data') && englishHome.includes('Tech Lead'), 'English hero missing current role');
 assert(frenchHome.includes('projets'), 'French homepage not translated');
 assert(frenchHome.includes('href="/en/"'), 'FR -> EN switch missing');
 assert(englishHome.includes('href="/"'), 'EN -> FR switch missing');
@@ -58,7 +58,10 @@ for (const client of ['ENGIE', 'Afflelou', 'iQera', 'AXA', 'Natixis', 'Ingenianc
   assert(englishExperience.toLowerCase().includes(client.toLowerCase()), 'EN experience missing: ' + client);
 }
 assert(frenchExperience.includes('Tech Lead Data') && frenchExperience.includes('Cloud Data Engineer'), 'Experience roles missing');
-assert(englishExperience.includes('Tech Lead Data') && englishExperience.includes('Cloud Data Engineer'), 'Translated experience roles missing');
+assert(englishExperience.includes('Data Tech Lead') && englishExperience.includes('Cloud Data Engineer'), 'Translated experience roles missing');
 assert(!englishHome.includes('I am a Forward Deployed Engineer'), 'Cannot misrepresent target role');
+assert((frenchExperience.match(/class="timeline-item"/g) || []).length === 8, 'Eight dated career roles expected');
+assert((englishExperience.match(/class="timeline-item"/g) || []).length === 8, 'Eight English career entries expected');
+assert(sitemap.includes('/en/roadmap/') && sitemap.includes('/en/projects/dossierpro/'), 'English URL missing from sitemap');
 
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');
