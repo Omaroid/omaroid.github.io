@@ -1,0 +1,17 @@
+---
+interface Props { name: string; size?: 'normal' | 'small' }
+const { name, size = 'normal' } = Astro.props;
+const initials: Record<string,string> = {
+  'ENGIE': 'E',
+  'Groupe Alain Afflelou': 'AA',
+  'iQera': 'iQ',
+  'AXA': 'AXA',
+  'Natixis': 'N',
+  'Ingeniance': 'IN',
+  'Edifixio': 'ED',
+};
+const key = name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+---
+<span class={'brand-mark brand-'+key+' brand-'+size} role="img" aria-label={'Repère visuel '+name}>
+  <span aria-hidden="true">{initials[name] ?? name.slice(0,2).toUpperCase()}</span>
+</span>
