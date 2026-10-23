@@ -1,0 +1,63 @@
+---
+import Shell from '../layouts/Shell.astro';
+import { otherCopy, pathFor, type Lang } from '../data/i18n';
+import { getProject } from '../data/projects.localized';
+
+interface Props { lang:Lang; slug:string }
+const { lang, slug } = Astro.props;
+const project = getProject(lang,slug);
+if (!project) throw new Error('Unknown case study: ' + slug);
+const t = otherCopy[lang];
+---
+<Shell lang={lang} title={project.title + ' — ' + (lang === 'fr' ? 'Étude de cas | Omar Laraqui' : 'Engineering case study | Omar Laraqui')} description={project.short} pageType="article">
+  <section class="inner-hero">
+    <div class="shell">
+      <a class="back-link" href={pathFor(lang,'/')+'#work'}>← {t.back}</a>
+      <p class="section-id">{project.index} <span aria-hidden="true">/</span> {project.eyebrow.toUpperCase()}</p>
+      <h1>{project.title}<span class="accent">.</span></h1>
+      <p class="inner-lead">{project.short}</p>
+      <div class="case-meta"><span>{project.status}</span><span>{t.case}</span><span>{t.sensitive}</span></div>
+    </div>
+  </section>
+  <div class="shell case-content">
+    <article class="case-story">
+      <section>
+        <p class="section-id">{t.problemId}</p>
+        <h2>{t.problemTitle}</h2>
+        <p>{project.problem}</p>
+      </section>
+      <section>
+        <p class="section-id">{t.approachId}</p>
+        <h2>{t.approachTitle}</h2>
+        <ul>{project.approach.map(item=><li>{item}</li>)}</ul>
+      </section>
+      <section>
+        <p class="section-id">{t.decisionId}</p>
+        <h2>{t.decisionTitle}</h2>
+        <p class="quote-decision">{project.decision}</p>
+      </section>
+      <section>
+        <p class="section-id">{t.evidenceId}</p>
+        <h2>{t.evidenceTitle}</h2>
+        <p class="evidence-note">{project.evidence}</p>
+      </section>
+      <section>
+        <p class="section-id">{t.nextId}</p>
+        <h2>{t.nextTitle}</h2>
+        <ul>{project.next.map(item=><li>{item}</li>)}</ul>
+        <p style="margin-top:20px">{t.nextNote}</p>
+      </section>
+      <a class="text-link" href={pathFor(lang,'/')+'#work'} style="margin-top:55px">{t.projectView} ↗</a>
+    </article>
+    <aside class="case-sidebar" aria-label={t.sidebar}>
+      <h2>{t.sidebar}</h2>
+      <dl>
+        <div><dt>{lang === 'fr' ? 'Projet' : 'Project'}</dt><dd>{project.title}</dd></div>
+        <div><dt>{t.area}</dt><dd>{project.categoryName}</dd></div>
+        <div><dt>{t.visibility}</dt><dd>{t.visibilityValue}</dd></div>
+        <div><dt>{t.validation}</dt><dd>{t.validationValue}</dd></div>
+      </dl>
+      <div class="case-stack">{project.stack.map(tech=><span>{tech}</span>)}</div>
+    </aside>
+  </div>
+</Shell>

@@ -1,0 +1,73 @@
+---
+import Shell from '../layouts/Shell.astro';
+import { career, education, certifications } from '../data/experience';
+import { otherCopy, pathFor, type Lang } from '../data/i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = otherCopy[lang];
+---
+<Shell lang={lang}
+  title={lang === 'fr' ? 'Expériences professionnelles | Omar Laraqui — Tech Lead Data & IA' : 'Professional experience | Omar Laraqui — Data & AI Tech Lead'}
+  description={lang === 'fr' ? 'Missions chez ENGIE, Groupe Alain Afflelou, iQera, AXA, Natixis, Ingeniance et Edifixio. Rôles, technologies, responsabilités et formation.' : 'Client engagements with ENGIE, Groupe Alain Afflelou, iQera, AXA, Natixis, Ingeniance and Edifixio. Roles, engineering responsibilities and education.'}>
+  <section class="inner-hero">
+    <div class="shell">
+      <a class="back-link" href={pathFor(lang,'/')}>← {lang === 'fr' ? 'ACCUEIL' : 'HOME'}</a>
+      <p class="section-id">{t.expSub}</p>
+      <h1>{t.expHero}<span class="accent">.</span></h1>
+      <p class="inner-lead">{t.expIntro}</p>
+      <div class="case-meta">
+        <span>{lang === 'fr' ? 'TECH LEAD DATA & IA' : 'DATA & AI TECH LEAD'}</span>
+        <span>{lang === 'fr' ? '7 CLIENTS / ENTREPRISES' : '7 CLIENTS / COMPANIES'}</span>
+        <span>{lang === 'fr' ? '8 RÔLES OU PÉRIODES' : '8 ROLE PERIODS'}</span>
+      </div>
+    </div>
+  </section>
+  <section class="shell timeline-wrap" aria-labelledby="timeline-title">
+    <div class="timeline-heading">
+      <p class="section-id">{t.expRoles}</p>
+      <h2 id="timeline-title">{lang === 'fr' ? 'Du développement à la responsabilité technique' : 'From engineering delivery to technical leadership'}</h2>
+    </div>
+    <div class="timeline">
+      {career.map((item, index) => (
+        <article class="timeline-item" id={'experience-' + index}>
+          <div class="timeline-when"><span class="timeline-counter">{String(index+1).padStart(2,'0')}</span><time>{item.dates[lang]}</time><span>{item.city}, France</span></div>
+          <div class="timeline-content">
+            <p class="timeline-client">{item.client}</p>
+            <h3>{item.title[lang]}</h3>
+            <ul>{item.highlights[lang].map(highlight=><li>{highlight}</li>)}</ul>
+            <div class="stack-tags">{item.technologies.map(tech=><span>{tech}</span>)}</div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="career-bottom section-space">
+    <div class="shell career-bottom-grid">
+      <div>
+        <p class="section-id">{t.expEducation.toUpperCase()}</p>
+        <div class="education-rows">
+          {education.map(item=>(
+            <div class="education-row">
+              <div><strong>{item.school}</strong><span>{item.dates}</span></div>
+              <p>{item.degree[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p class="section-id">{t.expCert.toUpperCase()}</p>
+        <ul class="certification-list">
+          {certifications.map(item=><li>{item}</li>)}
+        </ul>
+        <p class="experience-source">{lang === 'fr' ? 'Présentation fondée sur le CV fourni. Les responsabilités sont reformulées sans ajout de résultats chiffrés non documentés.' : 'Summaries based on the provided résumé. Responsibilities were rewritten without inventing numerical outcomes.'}</p>
+      </div>
+    </div>
+  </section>
+  <section class="closing-section">
+    <div class="shell closing-inner">
+      <div><p class="section-id">{lang === 'fr' ? 'DU PARCOURS AUX PROJETS' : 'FROM EXPERIENCE TO PROJECTS'}</p><h2>{lang === 'fr' ? 'Les expériences nourrissent les projets' : 'Experience shapes the projects'}<span class="accent">.</span></h2></div>
+      <a class="button button-primary" href={pathFor(lang,'/')+'#work'}>{lang === 'fr' ? 'Voir les projets' : 'Explore projects'} ↗</a>
+    </div>
+  </section>
+</Shell>
