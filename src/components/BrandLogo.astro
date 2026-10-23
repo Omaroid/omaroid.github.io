@@ -1,17 +1,27 @@
 ---
 interface Props { name: string; size?: 'normal' | 'small' }
 const { name, size = 'normal' } = Astro.props;
-const initials: Record<string,string> = {
-  'ENGIE': 'E',
-  'Groupe Alain Afflelou': 'AA',
-  'iQera': 'iQ',
-  'AXA': 'AXA',
-  'Natixis': 'N',
-  'Ingeniance': 'IN',
-  'Edifixio': 'ED',
+const identities: Record<string, string> = {
+  'ENGIE': 'engie',
+  'Groupe Alain Afflelou': 'groupe-alain-afflelou',
+  'iQera': 'iqera',
+  'AXA': 'axa',
+  'Natixis': 'natixis',
+  'Ingeniance': 'ingeniance',
+  'Edifixio': 'edifixio'
 };
-const key = name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const identity = identities[name];
 ---
-<span class={'brand-mark brand-'+key+' brand-'+size} role="img" aria-label={'Repère visuel '+name}>
-  <span aria-hidden="true">{initials[name] ?? name.slice(0,2).toUpperCase()}</span>
-</span>
+{identity && (
+  <span class={'client-identity client-identity-' + size}>
+    <img
+      class="client-identity-logo"
+      src={'/logos/clients/' + identity + '.svg'}
+      width="278"
+      height="82"
+      alt={name}
+      loading="lazy"
+      decoding="async"
+    />
+  </span>
+)}
