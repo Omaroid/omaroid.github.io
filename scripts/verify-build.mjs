@@ -64,4 +64,14 @@ assert((frenchExperience.match(/class="timeline-item"/g) || []).length === 8, 'E
 assert((englishExperience.match(/class="timeline-item"/g) || []).length === 8, 'Eight English career entries expected');
 assert(sitemap.includes('/en/roadmap/') && sitemap.includes('/en/projects/dossierpro/'), 'English URL missing from sitemap');
 
+
+const frenchCase = readFileSync(root + 'projects/dossierpro/index.html', 'utf8');
+const englishCase = readFileSync(root + 'en/projects/dossierpro/index.html', 'utf8');
+assert(frenchCase.includes('recrutement') && frenchCase.includes('Étude de cas'), 'French case-study text missing');
+assert(englishCase.includes('recruitment') && englishCase.includes('Engineering case study'), 'English case-study text missing');
+assert(frenchCase.includes('href="/en/projects/dossierpro/"'), 'Case-study language toggle must retain slug');
+assert(englishCase.includes('href="/projects/dossierpro/"'), 'English case-study toggle must retain slug');
+assert((frenchExperience.match(/class="timeline-client">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
+assert(existsSync(root + 'en/404/index.html') || existsSync(root + 'en/404.html'), 'English not-found route missing');
+
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');
