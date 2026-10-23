@@ -1,0 +1,67 @@
+---
+import Shell from '../../layouts/Shell.astro';
+import { projects } from '../../data/content';
+import type { Project } from '../../data/content';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+interface Props { project: Project }
+const { project } = Astro.props;
+---
+<Shell title={project.title + ' — Engineering case study | Omar Laraqui'} description={project.short} pageType="article">
+  <section class="inner-hero">
+    <div class="shell">
+      <a class="back-link" href="/#work">← BACK TO SELECTED WORK</a>
+      <p class="section-id">{project.index} <span aria-hidden="true">/</span> {project.eyebrow.toUpperCase()}</p>
+      <h1>{project.title}<span class="accent">.</span></h1>
+      <p class="inner-lead">{project.short}</p>
+      <div class="case-meta"><span>{project.status}</span><span>ENGINEERING CASE STUDY</span><span>NO CLIENT DATA</span></div>
+    </div>
+  </section>
+  <div class="shell case-content">
+    <article class="case-story">
+      <section>
+        <p class="section-id">01 / THE PROBLEM</p>
+        <h2>What needed to change</h2>
+        <p>{project.problem}</p>
+      </section>
+      <section>
+        <p class="section-id">02 / THE ENGINEERING</p>
+        <h2>From problem to system</h2>
+        <ul>{project.approach.map((item) => <li>{item}</li>)}</ul>
+      </section>
+      <section>
+        <p class="section-id">03 / DESIGN DECISION</p>
+        <h2>The decision that matters</h2>
+        <p class="quote-decision">{project.decision}</p>
+      </section>
+      <section>
+        <p class="section-id">04 / EVIDENCE & LIMITATIONS</p>
+        <h2>What the record supports</h2>
+        <p class="evidence-note">{project.evidence}</p>
+      </section>
+      <section>
+        <p class="section-id">05 / NEXT VALIDATION</p>
+        <h2>How I would strengthen the proof</h2>
+        <ul>{project.next.map((item) => <li>{item}</li>)}</ul>
+        <p style="margin-top:20px">These are proposed next validation steps, not claims of completed benchmarks or production results.</p>
+      </section>
+      <a class="text-link" href="/#work" style="margin-top:55px">Explore more engineering work <span aria-hidden="true">↗</span></a>
+    </article>
+    <aside class="case-sidebar" aria-label="Project quick facts">
+      <h2>At a glance</h2>
+      <dl>
+        <div><dt>Project</dt><dd>{project.title}</dd></div>
+        <div><dt>Area</dt><dd>{project.categoryName}</dd></div>
+        <div><dt>Visibility</dt><dd>Private repository; public technical summary</dd></div>
+        <div><dt>Validation</dt><dd>Documented evidence only; no fabricated success metrics</dd></div>
+      </dl>
+      <div class="case-stack">{project.stack.map((tech) => <span>{tech}</span>)}</div>
+    </aside>
+  </div>
+</Shell>
