@@ -37,3 +37,12 @@ No private repo contents, API secrets, personal records, customer data or enviro
 ## One-site policy
 
 The profile repository (Omaroid/Omaroid) remains a short README introduction, not another website. This repository remains the sole official portfolio and GitHub Pages origin. Avoid new portfolio repositories or divergent copies.
+
+## Two languages, one codebase
+
+**French (primary):** `https://omaroid.github.io/`, `/experience/`, `/roadmap/`, `/projects/<slug>/`  
+**English:** `https://omaroid.github.io/en/`, `/en/experience/`, `/en/roadmap/`, `/en/projects/<slug>/`.
+
+The FR/EN switch retains the current page. Both languages are built in the **same** Astro project using shared components, one experience dataset and a translated project catalogue. The source PDF of the résumé is never committed to this public repository.
+
+The professional headline must remain **Tech Lead Data & IA / Data & AI Tech Lead**, with **Forward Deployed Engineering presented solely as a future career direction**. The seven organizations and eight role periods are grounded in the résumé supplied on 23 October 2026. See `BILINGUAL_CONTENT.md` for upkeep.
