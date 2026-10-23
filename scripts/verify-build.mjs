@@ -110,6 +110,21 @@ for (const file of allHtml) {
     }
   }
 }
+
+for (const file of allHtml) {
+  const html = readFileSync(file, 'utf8');
+  assert(html.includes('http-equiv="Content-Security-Policy"'), 'CSP missing from ' + file);
+  assert(html.includes("default-src &#39;none&#39;") || html.includes("default-src 'none'") || html.includes("default-src &apos;none&apos;"), 'Expected deny-by-default CSP in ' + file);
+  assert(!html.includes("'unsafe-inline'") && !html.includes('unsafe-eval'), 'Unsafe CSP escape hatch in ' + file);
+  assert(!/\sstyle="[^"]*"/.test(html), 'Inline style blocked by CSP in ' + file);
+  const matches = [...html.matchAll(/<script\\b([^>]*)>/gi)];
+  for (const [,attributes] of matches) {
+    if (attributes.includes('src=')) {
+      assert(!/src="https?:\/\//.test(attributes), 'Unexpected third-party script in ' + file);
+    }
+  }
+}
+
 const generatedHome = readFileSync(root + 'index.html', 'utf8');
 assert(/href="\/_astro\/[^"]+\.css"/.test(generatedHome), 'Built CSS is not linked on the homepage');
 assert(htmlFiles(root).length >= 20, 'Expected complete FR / EN static pages');
