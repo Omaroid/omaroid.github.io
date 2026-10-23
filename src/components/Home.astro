@@ -1,5 +1,6 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import BrandLogo from './BrandLogo.astro';
 import { projects, foundations, labs, categories } from '../data/content';
 import { getProjects } from '../data/projects.localized';
 import { career } from '../data/experience';
@@ -23,6 +24,10 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
         <div class="hero-actions">
           <a class="button button-primary" href="#work">{c.heroPrimary} <span aria-hidden="true">↗</span></a>
           <a class="button button-ghost" href={pathFor(lang,'/experience/')}>{c.heroSecondary} <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="brand-strip" aria-label={lang === 'fr' ? 'Clients et expériences' : 'Clients and experience'}>
+          <span class="brand-strip-label">{lang === 'fr' ? 'EXPÉRIENCES CLIENTS' : 'CLIENT EXPERIENCE'}</span>
+          <div class="brand-strip-list">{['ENGIE', 'Groupe Alain Afflelou', 'iQera', 'AXA', 'Natixis'].map(name => <BrandLogo name={name} size="small" />)}</div>
         </div>
         <div class="hero-facts">
           <div><strong>8<span class="accent">+</span></strong><span>{c.factsYears}</span></div>
