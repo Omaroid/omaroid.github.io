@@ -1,0 +1,24 @@
+---
+interface Props { name: string }
+const { name } = Astro.props;
+const icons: Record<string, string> = {
+  'Databricks': 'databricks',
+  'Spark': 'apachespark',
+  'Apache Spark': 'apachespark',
+  'PySpark': 'apachespark',
+  'Python': 'python',
+  'TypeScript': 'typescript',
+  'Next.js': 'nextdotjs',
+  'PostgreSQL': 'postgresql',
+  'Redis': 'redis',
+  'React': 'react',
+  'GitHub': 'github',
+  'Docker': 'docker',
+  'Terraform': 'terraform',
+  'Airflow': 'apacheairflow',
+  'Apache Airflow': 'apacheairflow',
+  'Vercel': 'vercel'
+};
+const icon = icons[name];
+---
+{icon && <img class="tech-icon" src={'/logos/technology/' + icon + '.svg'} width="15" height="15" loading="lazy" decoding="async" alt="" aria-hidden="true" />}

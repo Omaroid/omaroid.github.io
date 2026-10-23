@@ -130,4 +130,23 @@ assert(/href="\/_astro\/[^"]+\.css"/.test(generatedHome), 'Built CSS is not link
 assert(htmlFiles(root).length >= 20, 'Expected complete FR / EN static pages');
 assert(existsSync(root + '.nojekyll'), 'Missing .nojekyll for safe GitHub Pages publishing');
 
+
+// Technology brand images are bundled at build time, never fetched from remote CDNs.
+const techLogos = [
+  'databricks', 'apachespark', 'python', 'typescript', 'nextdotjs',
+  'postgresql', 'redis', 'react', 'github', 'docker',
+  'terraform', 'apacheairflow', 'vercel'
+];
+for (const logo of techLogos) {
+  const file = root + 'logos/technology/' + logo + '.svg';
+  assert(existsSync(file), 'Missing locally hosted technology logo: ' + logo);
+  const svg = readFileSync(file, 'utf8');
+  assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe SVG asset: ' + logo);
+}
+for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/experience/index.html']) {
+  const html = readFileSync(root + file, 'utf8');
+  assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
+  assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
+}
+
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');
