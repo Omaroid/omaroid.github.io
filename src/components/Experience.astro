@@ -35,7 +35,7 @@ const t = otherCopy[lang];
         <article class="timeline-item" id={'experience-' + index}>
           <div class="timeline-when"><span class="timeline-counter">{String(index+1).padStart(2,'0')}</span><time>{item.dates[lang]}</time><span>{item.city}, France</span></div>
           <div class="timeline-content">
-            <div class="timeline-client-brand"><BrandLogo name={item.client} /><p class="timeline-client">{item.client}</p></div>
+            <div class="timeline-client-brand"><BrandLogo name={item.client} /><p class="timeline-client visually-hidden">{item.client}</p></div>
             <h3>{item.title[lang]}</h3>
             <ul>{item.highlights[lang].map(highlight=><li>{highlight}</li>)}</ul>
             <div class="stack-tags">{item.technologies.map(tech=><span><TechLogo name={tech} />{tech}</span>)}</div>

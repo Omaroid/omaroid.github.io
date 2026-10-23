@@ -71,7 +71,7 @@ assert(frenchCase.includes('recrutement') && frenchCase.includes('Étude de cas'
 assert(englishCase.includes('recruitment') && englishCase.includes('Engineering case study'), 'English case-study text missing');
 assert(frenchCase.includes('href="/en/projects/dossierpro/"'), 'Case-study language toggle must retain slug');
 assert(englishCase.includes('href="/projects/dossierpro/"'), 'English case-study toggle must retain slug');
-assert((frenchExperience.match(/class="timeline-client">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
+assert((frenchExperience.match(/class="timeline-client(?: visually-hidden)?">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
 assert(existsSync(root + 'en/404/index.html') || existsSync(root + 'en/404.html'), 'English not-found route missing');
 
 
@@ -135,7 +135,9 @@ assert(existsSync(root + '.nojekyll'), 'Missing .nojekyll for safe GitHub Pages 
 const techLogos = [
   'databricks', 'apachespark', 'python', 'typescript', 'nextdotjs',
   'postgresql', 'redis', 'react', 'github', 'docker',
-  'terraform', 'apacheairflow', 'vercel'
+  'terraform', 'apacheairflow', 'vercel',
+  'supabase', 'gitlab', 'apachehadoop', 'javascript', 'nodedotjs', 'scala',
+  'mlflow', 'scikitlearn', 'kubernetes', 'pytorch'
 ];
 for (const logo of techLogos) {
   const file = root + 'logos/technology/' + logo + '.svg';
@@ -147,6 +149,27 @@ for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/
   const html = readFileSync(root + file, 'utf8');
   assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
   assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
+}
+
+
+// Premium visual redesign safeguards (all assets must remain local and static).
+const clientLogoIds = ['engie','groupe-alain-afflelou','iqera','axa','natixis','ingeniance','edifixio'];
+for (const id of clientLogoIds) {
+  const filename = root + 'logos/clients/' + id + '.svg';
+  assert(existsSync(filename), 'Missing client identity asset: ' + id);
+  const source = readFileSync(filename,'utf8');
+  assert(source.includes('<svg') && !/<script|onload\s*=|onerror\s*=|<foreignObject|javascript:|<(?:image|use)\b[^>]*(?:href|xlink:href)\s*=\s*[\"'](?:https?:|\/\/)/i.test(source), 'Unsafe client SVG: ' + id);
+}
+for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
+  const html = readFileSync(root+file,'utf8');
+  assert(html.includes('/logos/clients/engie.svg'), 'ENGIE client mark missing from ' + file);
+  assert(html.includes('/logos/clients/axa.svg'), 'AXA client mark missing from ' + file);
+  assert(html.includes('premium-surface'), 'Premium design layer marker missing from ' + file);
+}
+for (const file of ['index.html','en/index.html']) {
+  const html = readFileSync(root+file,'utf8');
+  assert(html.includes('project-visual-logo'), 'Project visual branding missing from ' + file);
+  assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
 }
 
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');

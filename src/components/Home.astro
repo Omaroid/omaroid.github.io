@@ -28,7 +28,7 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
         </div>
         <div class="brand-strip" aria-label={lang === 'fr' ? 'Clients et expériences' : 'Clients and experience'}>
           <span class="brand-strip-label">{lang === 'fr' ? 'EXPÉRIENCES CLIENTS' : 'CLIENT EXPERIENCE'}</span>
-          <div class="brand-strip-list">{['ENGIE', 'Groupe Alain Afflelou', 'iQera', 'AXA', 'Natixis'].map(name => <BrandLogo name={name} size="small" />)}</div>
+          <div class="brand-strip-list">{['ENGIE', 'Groupe Alain Afflelou', 'iQera', 'AXA', 'Natixis', 'Ingeniance', 'Edifixio'].map(name => <BrandLogo name={name} size="small" />)}</div>
         </div>
         <div class="tech-identity" aria-label={lang === 'fr' ? 'Technologies principales' : 'Core technologies'}>
           {['Databricks','Spark','Python','TypeScript','React'].map(name => <span class="tech-identity-item"><TechLogo name={name} /><span>{name}</span></span>)}
@@ -73,6 +73,7 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
             <div class={'project-art art-' + project.motif} aria-hidden="true">
               <div class="art-lines"><span></span><span></span><span></span><span></span></div>
               <span class="art-index">/{project.index}</span>
+              <div class="project-visual-logo" aria-hidden="true">{project.stack.filter(tech => ['Databricks','React','Next.js','PostgreSQL','TypeScript','Vercel','Python','Spark','PySpark','Redis'].includes(tech)).slice(0,3).map(tech => <span class="project-visual-badge"><TechLogo name={tech} /></span>)}</div>
               <span class="art-monogram">{project.title === 'Retail Churn Copilot' ? 'CHURN' : project.title === 'Mission Radar' ? 'RADAR' : project.title === 'BLOOM Terminal' ? 'BLOOM' : project.title === 'PokéValue' ? 'VISION' : project.title === 'SA-OS' ? 'SA/OS' : 'DOSSIER'}</span>
               <span class="art-corner"></span>
             </div>
@@ -115,7 +116,7 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
         {career.slice(0,3).map((role, i) => (
           <a href={pathFor(lang,'/experience/') + '#experience-' + i} class="career-preview-card">
             <span class="history-meta">{role.dates[lang]}</span>
-            <h3>{role.client} <span aria-hidden="true">↗</span></h3>
+            <div class="preview-client-identity"><BrandLogo name={role.client} size="small" /></div><h3>{role.client} <span aria-hidden="true">↗</span></h3>
             <p>{role.title[lang]}</p>
             <div class="stack-tags">{role.technologies.slice(0,3).map(tech=><span><TechLogo name={tech} />{tech}</span>)}</div>
           </a>
