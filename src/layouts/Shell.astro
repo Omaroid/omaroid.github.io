@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { createHash } from 'node:crypto';
 import { nav, opposite, pathFor, type Lang } from '../data/i18n';
 
 interface Props {
@@ -43,6 +44,25 @@ const schema = {
   jobTitle: 'Data & AI Tech Lead',
   knowsAbout: ['Databricks', 'Azure', 'Apache Spark', 'Data Engineering', 'AI Engineering', 'Data Architecture']
 };
+const structuredData = JSON.stringify(schema);
+const structuredDataHash = createHash('sha256').update(structuredData).digest('base64');
+// GitHub Pages cannot set custom response headers. This meta policy provides
+// browser-side defense in depth for the static-only portfolio. It cannot
+// replace HTTP-only directives such as frame-ancestors or HSTS.
+const csp = [
+  "default-src 'none'",
+  "base-uri 'none'",
+  "form-action 'none'",
+  "frame-src 'none'",
+  "object-src 'none'",
+  "connect-src 'none'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "style-src 'self'",
+  "script-src 'self' 'sha256-" + structuredDataHash + "'",
+  "manifest-src 'self'",
+  "upgrade-insecure-requests"
+].join('; ');
 ---
 <!doctype html>
 <html lang={lang}>
@@ -50,6 +70,7 @@ const schema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#10171b" />
+    <meta http-equiv="Content-Security-Policy" content={csp} />
     <meta name="description" content={description} />
     <meta name="author" content="Omar Laraqui" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
@@ -68,7 +89,7 @@ const schema = {
     <link rel="alternate" hreflang="en" href={enUrl} />
     <link rel="alternate" hreflang="x-default" href={frUrl} />
     <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={structuredData} />
   </head>
   <body>
     <a class="skip-link" href="#main">{t.skip}</a>

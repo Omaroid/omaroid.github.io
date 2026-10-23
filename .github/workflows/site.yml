@@ -25,8 +25,10 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
-      - name: Install
-        run: npm install --no-audit --no-fund
+      - name: Verify lockfile and install reproducibly
+        run: npm ci --no-audit --no-fund
+      - name: Audit dependency vulnerabilities
+        run: npm audit --audit-level=high
       - name: Build static site
         run: npm run build
       - name: Verify generated pages and links
@@ -50,3 +52,23 @@ jobs:
       - name: Deploy official GitHub Pages site
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Verify production HTTPS and bilingual pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          SITE="https://omaroid.github.io"
+          for attempt in {1..12}; do
+            if curl --fail --silent --show-error --location --max-time 12 "$SITE/?verify=${{ github.sha }}" -o /tmp/portfolio-fr.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/en/?verify=${{ github.sha }}" -o /tmp/portfolio-en.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/experience/?verify=${{ github.sha }}" -o /tmp/portfolio-experience.html &&
+               grep -q 'Tech Lead Data' /tmp/portfolio-fr.html &&
+               grep -q 'Data & AI Tech Lead' /tmp/portfolio-en.html &&
+               grep -q 'ENGIE' /tmp/portfolio-experience.html; then
+              echo "Production HTTPS and FR/EN experience pages verified"
+              exit 0
+            fi
+            echo "Production not updated yet (attempt $attempt/12); retrying"
+            sleep 10
+          done
+          echo "Published site does not match the build" >&2
+          exit 1

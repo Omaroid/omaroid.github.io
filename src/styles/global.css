@@ -463,3 +463,11 @@
     .language-toggle { margin-right: 7px; }
   }
 }
+
+/* CSP-compatible replacements for former inline style attributes. */
+@layer components {
+  .content-offset-sm { margin-top: 20px; }
+  .content-offset-md { margin-top: 28px; }
+  .content-offset-lg { margin-top: 55px; }
+  .content-offset-home { margin-top: 35px; }
+}

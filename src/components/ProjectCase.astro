@@ -45,9 +45,9 @@ const t = otherCopy[lang];
         <p class="section-id">{t.nextId}</p>
         <h2>{t.nextTitle}</h2>
         <ul>{project.next.map(item=><li>{item}</li>)}</ul>
-        <p style="margin-top:20px">{t.nextNote}</p>
+        <p class="content-offset-sm">{t.nextNote}</p>
       </section>
-      <a class="text-link" href={pathFor(lang,'/')+'#work'} style="margin-top:55px">{t.projectView} ↗</a>
+      <a class="text-link content-offset-lg" href={pathFor(lang,'/')+'#work'}>{t.projectView} ↗</a>
     </article>
     <aside class="case-sidebar" aria-label={t.sidebar}>
       <h2>{t.sidebar}</h2>
