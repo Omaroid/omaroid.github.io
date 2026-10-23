@@ -471,3 +471,19 @@
   .content-offset-lg { margin-top: 55px; }
   .content-offset-home { margin-top: 35px; }
 }
+
+/* Original brand monograms: no external logos, image CDNs, or JavaScript. */
+@layer components {
+  .brand-strip { margin-top: 26px; display: flex; align-items: center; flex-wrap: wrap; gap: 15px; }
+  .brand-strip-label { font: 600 10px/1.4 var(--mono); letter-spacing: .12em; color: var(--subtle); }
+  .brand-strip-list { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+  .brand-mark { flex: none; display: inline-grid; place-items: center; width: 51px; height: 51px; border: 1px solid var(--edge); border-radius: 12px; background: var(--bg-soft); color: var(--ink); font: 800 15px/1 var(--sans); letter-spacing: -.055em; }
+  .brand-small { width: 37px; height: 37px; border-radius: 9px; font-size: 12px; }
+  .brand-engie { color: #69d8e8; border-color: rgba(105,216,232,.35); }
+  .brand-groupe-alain-afflelou { color: #f3d5ac; border-color: rgba(243,213,172,.35); }
+  .brand-iqera { color: #e1c2ff; border-color: rgba(225,194,255,.35); }
+  .brand-axa { color: #a6c4ff; border-color: rgba(166,196,255,.35); }
+  .brand-natixis { color: #e9b0d3; border-color: rgba(233,176,211,.35); }
+  .timeline-client-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 9px; }
+  .timeline-client-brand .timeline-client { margin: 0; }
+}
