@@ -25,8 +25,23 @@ jobs:
         with:
           node-version: '24'
           package-manager-cache: false
-      - name: Install
-        run: npm install --no-audit --no-fund
+      - name: Install locked dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+      - name: Audit dependency vulnerabilities
+        run: npm audit --audit-level=high
+      - name: Preserve resolved lockfile for review
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-lockfile
+          path: package-lock.json
+          if-no-files-found: error
+          retention-days: 1
       - name: Build static site
         run: npm run build
       - name: Verify generated pages and links
