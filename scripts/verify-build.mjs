@@ -71,7 +71,7 @@ assert(frenchCase.includes('recrutement') && frenchCase.includes('Étude de cas'
 assert(englishCase.includes('recruitment') && englishCase.includes('Engineering case study'), 'English case-study text missing');
 assert(frenchCase.includes('href="/en/projects/dossierpro/"'), 'Case-study language toggle must retain slug');
 assert(englishCase.includes('href="/projects/dossierpro/"'), 'English case-study toggle must retain slug');
-assert((frenchExperience.match(/class="timeline-client">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
+assert((frenchExperience.match(/class="timeline-client(?: visually-hidden)?">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
 assert(existsSync(root + 'en/404/index.html') || existsSync(root + 'en/404.html'), 'English not-found route missing');
 
 
@@ -135,7 +135,9 @@ assert(existsSync(root + '.nojekyll'), 'Missing .nojekyll for safe GitHub Pages 
 const techLogos = [
   'databricks', 'apachespark', 'python', 'typescript', 'nextdotjs',
   'postgresql', 'redis', 'react', 'github', 'docker',
-  'terraform', 'apacheairflow', 'vercel'
+  'terraform', 'apacheairflow', 'vercel',
+  'supabase', 'gitlab', 'apachehadoop', 'javascript', 'nodedotjs', 'scala',
+  'mlflow', 'scikitlearn', 'kubernetes', 'pytorch'
 ];
 for (const logo of techLogos) {
   const file = root + 'logos/technology/' + logo + '.svg';
