@@ -1,11 +1,11 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import {otherCopy} from '../data/i18n';
+const t=otherCopy.fr;
 ---
-<Shell title="Page not found — Omar Laraqui" description="This page is not available. Return to the engineering portfolio.">
+<Shell lang="fr" title="Page introuvable — Omar Laraqui" description="La page demandée est introuvable.">
   <section class="inner-hero"><div class="shell">
-    <p class="section-id">404 / NOT FOUND</p>
-    <h1>Wrong turn<span class="accent">.</span></h1>
-    <p class="inner-lead">This page isn't here. The projects and the roadmap are one step away.</p>
-    <a class="button button-primary" href="/" style="margin-top:35px">Go home ↗</a>
+    <p class="section-id">404 / NOT FOUND</p><h1>{t.notFound}<span class="accent">.</span></h1>
+    <a href="/" class="button button-primary" style="margin-top:35px">{t.goHome} ↗</a>
   </div></section>
 </Shell>
