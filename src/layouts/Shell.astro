@@ -21,10 +21,14 @@ const {
 } = Astro.props;
 
 const t = nav[lang];
-const currentPath = Astro.url.pathname.replace(/\/+$/, '') + '/';
-const routePath = lang === 'en'
+const rawPath = Astro.url.pathname;
+const isNotFound = rawPath.endsWith('/404.html') || rawPath.endsWith('/404/');
+const currentPath = rawPath.replace(/\/+$/, '') + '/';
+// A 404 is intentionally a special route on GitHub Pages (404.html, not /404/).
+// Language links from a missing page lead safely to the other locale's homepage.
+const routePath = isNotFound ? '/' : (lang === 'en'
   ? currentPath.replace(/^\/en(?=\/)/, '') || '/'
-  : currentPath;
+  : currentPath);
 const frUrl = new URL(pathFor('fr', routePath), Astro.site ?? 'https://omaroid.github.io').toString();
 const enUrl = new URL(pathFor('en', routePath), Astro.site ?? 'https://omaroid.github.io').toString();
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://omaroid.github.io').toString();
