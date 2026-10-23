@@ -156,7 +156,7 @@ for (const id of clientLogoIds) {
   const filename = root + 'logos/clients/' + id + '.svg';
   assert(existsSync(filename), 'Missing client identity asset: ' + id);
   const source = readFileSync(filename,'utf8');
-  assert(source.includes('<svg') && !/<script|onload=|onerror=|<foreignObject|javascript:|https?:\/\//i.test(source), 'Unsafe client SVG: ' + id);
+  assert(source.includes('<svg') && !/<script|onload\s*=|onerror\s*=|<foreignObject|javascript:|<(?:image|use)\b[^>]*(?:href|xlink:href)\s*=\s*[\"'](?:https?:|\/\/)/i.test(source), 'Unsafe client SVG: ' + id);
 }
 for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
