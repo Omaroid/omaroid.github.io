@@ -1,0 +1,37 @@
+---
+import Shell from '../layouts/Shell.astro';
+import { labs } from '../data/content';
+import { labTranslations, otherCopy, pathFor, type Lang } from '../data/i18n';
+
+interface Props {lang:Lang}
+const {lang}=Astro.props;
+const t=otherCopy[lang];
+const l=labs.map((lab,i)=>({...lab,...labTranslations[lang][i]}));
+---
+<Shell lang={lang}
+  title={lang === 'fr' ? 'Feuille de route vers le FDE — Omar Laraqui' : 'Forward Deployed Engineering journey — Omar Laraqui'}
+  description={lang === 'fr' ? 'Projets IA publics à venir pour développer mes compétences de futur Forward Deployed Engineer.' : 'Planned public AI projects to build evidence toward a future Forward Deployed Engineer role.'}>
+  <section class="inner-hero"><div class="shell">
+    <a class="back-link" href={pathFor(lang,'/')}>← {lang === 'fr' ? 'ACCUEIL' : 'HOME'}</a>
+    <p class="section-id">{t.roadmapId}</p>
+    <h1>{t.roadmapHero}<span class="accent">.</span></h1>
+    <p class="inner-lead">{t.roadmapIntro}</p>
+    <div class="case-meta"><span>{lang === 'fr' ? 'STATUT : À CONSTRUIRE' : 'STATUS: PLANNED'}</span><span>RAG / MLOPS / AI TOOLS</span></div>
+  </div></section>
+  <div class="shell roadmap-list">
+    {l.map(lab=>(
+      <article class="roadmap-item">
+        <p class="section-id">LAB {lab.number} / {lang === 'fr' ? 'PRÉVU' : 'PLANNED'}</p>
+        <h2>{lab.title}</h2>
+        <p>{lab.focus}</p>
+        <p class="proof-line">{t.proof} : {lab.proof}</p>
+      </article>
+    ))}
+    <article class="roadmap-item">
+      <p class="section-id">{lang === 'fr' ? 'OBJECTIF QUALITÉ' : 'ENGINEERING STANDARD'}</p>
+      <h2>{t.roadmapStandards}</h2>
+      <p>{t.roadmapStandardsText}</p>
+      <a class="text-link" href={pathFor(lang,'/')} style="margin-top:28px">{lang === 'fr' ? 'Retour à la vitrine' : 'Back to portfolio'} ↗</a>
+    </article>
+  </div>
+</Shell>
