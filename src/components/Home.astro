@@ -1,5 +1,6 @@
 ---
 import Shell from '../layouts/Shell.astro';
+import TechLogo from './TechLogo.astro';
 import BrandLogo from './BrandLogo.astro';
 import { projects, foundations, labs, categories } from '../data/content';
 import { getProjects } from '../data/projects.localized';
@@ -28,6 +29,9 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
         <div class="brand-strip" aria-label={lang === 'fr' ? 'Clients et expériences' : 'Clients and experience'}>
           <span class="brand-strip-label">{lang === 'fr' ? 'EXPÉRIENCES CLIENTS' : 'CLIENT EXPERIENCE'}</span>
           <div class="brand-strip-list">{['ENGIE', 'Groupe Alain Afflelou', 'iQera', 'AXA', 'Natixis'].map(name => <BrandLogo name={name} size="small" />)}</div>
+        </div>
+        <div class="tech-identity" aria-label={lang === 'fr' ? 'Technologies principales' : 'Core technologies'}>
+          {['Databricks','Spark','Python','TypeScript','React'].map(name => <span class="tech-identity-item"><TechLogo name={name} /><span>{name}</span></span>)}
         </div>
         <div class="hero-facts">
           <div><strong>8<span class="accent">+</span></strong><span>{c.factsYears}</span></div>
@@ -76,7 +80,7 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
               <div class="project-topline"><span>{project.eyebrow}</span><span class="project-arrow" aria-hidden="true">↗</span></div>
               <h3>{project.title}</h3>
               <p>{project.short}</p>
-              <div class="stack-tags">{project.stack.slice(0,4).map((tech) => <span>{tech}</span>)}</div>
+              <div class="stack-tags">{project.stack.slice(0,4).map((tech) => <span><TechLogo name={tech} />{tech}</span>)}</div>
               <div class="project-bottom"><span><span class="status-dot" aria-hidden="true"></span> {c.private}</span><span>{c.view} <span aria-hidden="true">↗</span></span></div>
             </div>
           </a>
@@ -113,7 +117,7 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
             <span class="history-meta">{role.dates[lang]}</span>
             <h3>{role.client} <span aria-hidden="true">↗</span></h3>
             <p>{role.title[lang]}</p>
-            <div class="stack-tags">{role.technologies.slice(0,3).map(tech=><span>{tech}</span>)}</div>
+            <div class="stack-tags">{role.technologies.slice(0,3).map(tech=><span><TechLogo name={tech} />{tech}</span>)}</div>
           </a>
         ))}
       </div>
