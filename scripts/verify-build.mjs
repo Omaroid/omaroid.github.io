@@ -149,4 +149,25 @@ for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/
   assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
 }
 
+
+// Premium visual redesign safeguards (all assets must remain local and static).
+const clientLogoIds = ['engie','groupe-alain-afflelou','iqera','axa','natixis','ingeniance','edifixio'];
+for (const id of clientLogoIds) {
+  const filename = root + 'logos/clients/' + id + '.svg';
+  assert(existsSync(filename), 'Missing client identity asset: ' + id);
+  const source = readFileSync(filename,'utf8');
+  assert(source.includes('<svg') && !/<script|onload=|onerror=|<foreignObject|javascript:|https?:\/\//i.test(source), 'Unsafe client SVG: ' + id);
+}
+for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
+  const html = readFileSync(root+file,'utf8');
+  assert(html.includes('/logos/clients/engie.svg'), 'ENGIE client mark missing from ' + file);
+  assert(html.includes('/logos/clients/axa.svg'), 'AXA client mark missing from ' + file);
+  assert(html.includes('premium-surface'), 'Premium design layer marker missing from ' + file);
+}
+for (const file of ['index.html','en/index.html']) {
+  const html = readFileSync(root+file,'utf8');
+  assert(html.includes('project-visual-logo'), 'Project visual branding missing from ' + file);
+  assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
+}
+
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');
