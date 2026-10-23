@@ -74,4 +74,45 @@ assert(englishCase.includes('href="/projects/dossierpro/"'), 'English case-study
 assert((frenchExperience.match(/class="timeline-client">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
 assert(existsSync(root + 'en/404/index.html') || existsSync(root + 'en/404.html'), 'English not-found route missing');
 
+
+
+// Verify real built routes and local assets, not just string labels in markup.
+// A page may compile successfully while linking to a nonexistent static route.
+import { readdirSync, statSync } from 'node:fs';
+import { join, posix } from 'node:path';
+
+function htmlFiles(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+    const full = join(directory, entry.name);
+    return entry.isDirectory() ? htmlFiles(full) : entry.name.endsWith('.html') ? [full] : [];
+  });
+}
+
+const allHtml = htmlFiles(root);
+for (const file of allHtml) {
+  const html = readFileSync(file, 'utf8');
+  const links = [...html.matchAll(/\bhref="([^"]+)"/g)].map(match => match[1]);
+  for (const href of links) {
+    if (!href.startsWith('/')) continue;
+    const url = new URL(href, 'https://omaroid.github.io');
+    const relative = decodeURIComponent(url.pathname).replace(/^\/+/, '');
+    const target = relative === ''
+      ? 'index.html'
+      : relative.endsWith('/') ? relative + 'index.html' : relative;
+    const resolved = join(root, target);
+    assert(existsSync(resolved), 'Broken internal link in ' + file + ': ' + href);
+    if (url.hash) {
+      const destination = readFileSync(resolved, 'utf8');
+      const anchor = decodeURIComponent(url.hash.slice(1));
+      if (target.endsWith('.html')) {
+        assert(destination.includes('id="' + anchor + '"'), 'Broken internal fragment in ' + file + ': ' + href);
+      }
+    }
+  }
+}
+const generatedHome = readFileSync(root + 'index.html', 'utf8');
+assert(/href="\/_astro\/[^"]+\.css"/.test(generatedHome), 'Built CSS is not linked on the homepage');
+assert(htmlFiles(root).length >= 20, 'Expected complete FR / EN static pages');
+assert(existsSync(root + '.nojekyll'), 'Missing .nojekyll for safe GitHub Pages publishing');
+
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');
