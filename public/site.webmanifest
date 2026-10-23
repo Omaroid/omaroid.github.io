@@ -1,0 +1,15 @@
+{
+  "name": "Omar Laraqui — Engineering Portfolio",
+  "short_name": "Omar Laraqui",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "theme_color": "#10171b",
+  "background_color": "#10171b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
