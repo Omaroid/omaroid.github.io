@@ -31,7 +31,7 @@ const l=labs.map((lab,i)=>({...lab,...labTranslations[lang][i]}));
       <p class="section-id">{lang === 'fr' ? 'OBJECTIF QUALITÉ' : 'ENGINEERING STANDARD'}</p>
       <h2>{t.roadmapStandards}</h2>
       <p>{t.roadmapStandardsText}</p>
-      <a class="text-link" href={pathFor(lang,'/')} style="margin-top:28px">{lang === 'fr' ? 'Retour à la vitrine' : 'Back to portfolio'} ↗</a>
+      <a class="text-link content-offset-md" href={pathFor(lang,'/')}>{lang === 'fr' ? 'Retour à la vitrine' : 'Back to portfolio'} ↗</a>
     </article>
   </div>
 </Shell>
