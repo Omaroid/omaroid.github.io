@@ -46,9 +46,41 @@ jobs:
     permissions:
       pages: write
       id-token: write
+      actions: read
     environment:
       name: github-pages
     steps:
+      - name: Wait for legacy branch publisher (if still enabled)
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # GitHub Pages currently also runs a native "pages build and deployment"
+          # workflow for this branch. That workflow otherwise overwrites Astro.
+          observed=false
+          status=""
+          for attempt in {1..42}; do
+            status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?per_page=30" \
+              --jq ".workflow_runs[] | select(.head_sha == \"$GITHUB_SHA\" and .name == \"pages build and deployment\") | .status" | head -n 1)"
+            if [ -n "$status" ]; then
+              observed=true
+              echo "Native Pages publisher: $status (check $attempt)"
+              if [ "$status" = "completed" ]; then
+                echo "Native branch deployment finished; Astro can now publish last."
+                break
+              fi
+            elif [ "$attempt" -ge 6 ]; then
+              echo "No native Pages run exists; GitHub Actions is likely the configured Pages source."
+              break
+            fi
+            sleep 10
+          done
+          if [ "$observed" = true ] && [ "$status" != "completed" ]; then
+            echo "Native Pages publisher did not complete; refusing to race it." >&2
+            exit 1
+          fi
       - name: Deploy official GitHub Pages site
         id: deployment
         uses: actions/deploy-pages@v5
@@ -63,7 +95,10 @@ jobs:
                curl --fail --silent --show-error --location --max-time 12 "$SITE/experience/?verify=${{ github.sha }}" -o /tmp/portfolio-experience.html &&
                grep -q 'Tech Lead Data' /tmp/portfolio-fr.html &&
                grep -q 'Data & AI Tech Lead' /tmp/portfolio-en.html &&
-               grep -q 'ENGIE' /tmp/portfolio-experience.html; then
+               grep -q 'ENGIE' /tmp/portfolio-experience.html &&
+               grep -q 'premium-surface' /tmp/portfolio-fr.html &&
+               grep -q '/logos/clients/engie.svg' /tmp/portfolio-fr.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/logos/clients/engie.svg" -o /tmp/engie-identity.svg; then
               echo "Production HTTPS and FR/EN experience pages verified"
               exit 0
             fi
