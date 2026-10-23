@@ -5,3 +5,11 @@ Gemfile.lock
 .jekyll-metadata
 .DS_Store
 .jekyll-cache
+
+# Astro generated output and secrets
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
