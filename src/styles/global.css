@@ -487,3 +487,18 @@
   .timeline-client-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 9px; }
   .timeline-client-brand .timeline-client { margin: 0; }
 }
+
+
+/* Local SVG technology logos: no remote CDN, scripts or font downloads. */
+@layer components {
+  .tech-icon { display: block; flex: 0 0 auto; width: 15px; height: 15px; filter: invert(1); opacity: .85; }
+  .stack-tags span, .case-stack span { display: inline-flex; align-items: center; gap: 7px; }
+  .tech-identity { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .tech-identity-item { display: inline-flex; gap: 9px; align-items: center; color: #d6e4db; font: 500 11px/1.2 var(--mono); border: 1px solid var(--edge); padding: 10px 12px; background: rgba(255,255,255,.035); }
+  .tech-identity-item .tech-icon { width: 17px; height: 17px; }
+}
+@layer responsive {
+  @media (max-width: 730px) {
+    .tech-identity-item { padding: 8px; font-size: 10px; }
+  }
+}
