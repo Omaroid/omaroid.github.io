@@ -829,3 +829,24 @@
     .project-card:hover, .button:hover, .client-identity:hover { transform: none; }
   }
 }
+
+
+/* Final contrast and mobile-navigation polish. */
+@layer components {
+  .approach-section .section-header h2 { color: #f5f9fa; }
+  .approach-section .muted-heading { color: #c0d3da; }
+  .approach-section .method-grid { border-radius: 19px; overflow: hidden; }
+  .method { transition: background .2s ease; }
+  .method:hover { background: rgba(255,255,255,.035); }
+  .labs-section .section-id, .history-section .section-id, .experience-preview .section-id { color: #60737c; }
+}
+@layer responsive {
+  @media (max-width: 730px) {
+    .mobile-nav summary { border: 1px solid #d1dde3; border-radius: 11px; background: #fff; }
+    .mobile-nav summary span { background: #233944; }
+    .mobile-nav nav { border: 1px solid #dbe5e9; border-radius: 16px; background: #fff; box-shadow: 0 18px 48px rgba(24,56,74,.17); }
+    .mobile-nav nav a { color: #344955; border-radius: 8px; }
+    .mobile-nav nav a:hover { color: #087c89; background: #eef7f8; }
+    .approach-section .method-grid { border-radius: 16px; }
+  }
+}
