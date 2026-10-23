@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  pageType?: 'website' | 'article';
+}
+
+const {
+  title = 'Omar Laraqui — Data, Applied AI & Forward Deployed Engineering',
+  description = 'Omar Laraqui builds dependable data platforms and practical AI-enabled products. Explore real engineering case studies, architecture decisions and works in progress.',
+  pageType = 'website'
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://omaroid.github.io').toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Omar Laraqui',
+  url: 'https://omaroid.github.io/',
+  sameAs: ['https://github.com/Omaroid'],
+  jobTitle: 'Senior Data Engineer',
+  knowsAbout: ['Databricks', 'Azure', 'Apache Spark', 'Data Engineering', 'Applied AI', 'Forward Deployed Engineering']
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10171b" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Omar Laraqui" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:site_name" content="Omar Laraqui" />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-frame">
+      <header class="site-header">
+        <div class="shell nav-row">
+          <a class="wordmark" href="/" aria-label="Omar Laraqui, home">
+            <span class="wordmark-glyph" aria-hidden="true">O<span>∕</span>L</span>
+            <span class="wordmark-name">OMAR LARAQUI</span>
+          </a>
+          <nav class="desktop-nav" aria-label="Main navigation">
+            <a href="/#work">Work</a>
+            <a href="/#approach">Approach</a>
+            <a href="/experience/">Background</a>
+            <a href="/roadmap/">AI labs</a>
+          </nav>
+          <div class="nav-right">
+            <a class="nav-github" href="https://github.com/Omaroid" target="_blank" rel="noopener noreferrer">
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <details class="mobile-nav">
+              <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
+              <nav aria-label="Mobile navigation">
+                <a href="/#work">Work</a>
+                <a href="/#approach">Approach</a>
+                <a href="/experience/">Background</a>
+                <a href="/roadmap/">AI labs</a>
+                <a href="https://github.com/Omaroid">GitHub ↗</a>
+              </nav>
+            </details>
+          </div>
+        </div>
+      </header>
+
+      <main id="main"><slot /></main>
+
+      <footer class="site-footer">
+        <div class="shell footer-inner">
+          <div>
+            <a class="footer-brand" href="/">Omar Laraqui<span class="accent">.</span></a>
+            <p>Engineering first. Useful AI, delivered.</p>
+          </div>
+          <div class="footer-links" aria-label="Footer links">
+            <a href="/#work">Work</a>
+            <a href="/roadmap/">Labs</a>
+            <a href="https://github.com/Omaroid" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+          <p class="footnote">© {new Date().getFullYear()} Omar Laraqui. Original design · Static by default.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
