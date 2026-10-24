@@ -8,6 +8,7 @@ export type Project = {
   category: ProjectCategory;
   categoryName: string;
   status: string;
+  demoUrl?: string;
   stack: string[];
   problem: string;
   approach: string[];
@@ -110,21 +111,22 @@ export const projects: Project[] = [
     slug: 'bloom-terminal',
     index: '05',
     title: 'BLOOM Terminal',
-    short: 'A focused intelligence workspace for cloud, data and technology research.',
+    short: 'A Databricks-first intelligence workspace for cloud and data research, with public feeds and project watchlists.',
     eyebrow: 'Information systems / Research tooling',
     category: 'systems',
     categoryName: 'Systems',
-    status: 'Private source · Working application',
-    stack: ['JavaScript', 'Node.js', 'Feeds', 'Vercel', 'GitHub Actions'],
+    status: 'Private source · Public demo',
+    demoUrl: 'https://bloomxterminal.netlify.app',
+    stack: ['JavaScript', 'Node.js', 'Netlify Functions', 'GitHub Actions'],
     problem: 'Relevant cloud and data engineering updates arrive across many publishers and formats, making it easy to lose the connection between news and ongoing projects.',
     approach: [
       'Aggregate public publisher feeds into a focused reading environment.',
       'Support project watchlists, topic filtering, source health and briefing workflows.',
       'Keep local research notes and source links available for follow-up.',
-      'Document a deployment approach with tests and optional access protection.'
+      'Serve the public application through a Netlify Function and a minimal static asset bundle.'
     ],
     decision: 'Favor attributed source material and deterministic signals over unsupported AI-generated assertions.',
-    evidence: 'The private README documents the application, CI tests, feed handling and Vercel deployment configuration. Live service uptime and external user adoption have not been verified.',
+    evidence: 'The private repository contains the feed parser, tests and Netlify deployment configuration. A public Netlify deployment is live; source availability and external adoption are not measured.',
     next: ['Measure source availability and feed freshness.', 'Add clearer failure-state reporting.', 'Publish a safe video tour.'],
     motif: 'terminal'
   },
