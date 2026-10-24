@@ -2,15 +2,15 @@
 
 Bilingual professional portfolio: [French](https://omaroid.github.io/) · [English](https://omaroid.github.io/en/)
 
-The site presents Data engineering, architecture and applied AI work through six technical case studies, a résumé-based career history, and a clearly labeled roadmap. Private project repositories stay private; the site publishes sanitized summaries only. The current positioning is **Data & AI Tech Lead**. Forward Deployed Engineering is a future direction, not a current job title.
+The site presents 14 documented project profiles: six current product and platform case studies, plus eight IoT, data and machine-learning projects from earlier work. It also includes a résumé-based career history and a clearly labeled roadmap. Public repositories link directly to GitHub; private repositories offer an email access request. Private code, CV data and customer material are not published. The current positioning is **Data & AI Tech Lead**. Forward Deployed Engineering is a future direction, not a current job title.
 
 ## Stack and structure
 
 - Astro 7 builds a static site; there is no application server or runtime database.
 - French and English routes share components and source data.
 - Company, technology and project marks are bundled locally. The site does not load remote logos or third-party scripts.
-- `src/data/content.ts` — project case studies and selected public foundations.
-- `src/data/projects.localized.ts` and `src/data/i18n.ts` — French copy and shared UI translations.
+- `src/data/content.ts` — English project case studies, source visibility and repository links.
+- `src/data/projects.localized.ts` and `src/data/i18n.ts` — French project copy and shared bilingual UI content.
 - `src/data/experience.ts` — professional roles, education and certifications.
 - `src/components/` and `src/pages/` — shared views and generated routes.
 - `public/logos/` and `public/project-icons/` — self-hosted visual assets; see [BRAND_ASSETS.md](BRAND_ASSETS.md).
