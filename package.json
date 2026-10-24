@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "node scripts/verify-build.mjs",
-    "audit": "npm audit --omit=dev --audit-level=high"
+    "audit": "npm audit --omit=dev --audit-level=high",
+    "prebuild": "node scripts/materialize-project-favicons.mjs",
+    "predev": "node scripts/materialize-project-favicons.mjs"
   },
   "engines": {
     "node": ">=24"
