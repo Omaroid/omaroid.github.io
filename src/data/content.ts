@@ -176,7 +176,7 @@ export const labs = [
   },
   {
     number: '03',
-    title: 'Forward Deployed AI Workflow',
+    title: 'Applied AI Workflow',
     focus: 'A realistic customer problem solved with scoped tools and human approval.',
     proof: 'Discovery brief · Integration tests · Tracing · Runbook',
     status: 'Planned'
