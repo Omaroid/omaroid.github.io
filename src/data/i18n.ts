@@ -14,7 +14,7 @@ export const homeText = {
   fr: {
     eyebrow:'TECH LEAD DATA & IA', hero1:'La data complexe.', hero2:'Des solutions utiles',
     heroLead:'Tech Lead Data & IA. Je conçois des plateformes de données et des produits qui rapprochent la technique des besoins métiers.',
-    heroDirection:'Mon cap : évoluer progressivement vers le Forward Deployed Engineering, à travers des projets concrets, l’intégration de systèmes et des preuves mesurables.',
+    heroDirection:'Je conçois et livre des systèmes Data & IA utiles, robustes et adaptés à leurs utilisateurs, de la première architecture à l’exploitation.',
     heroPrimary:'Découvrir mes projets', heroSecondary:'Mon parcours', factsYears:'ans de pratique data',
     factsCore:'socle cloud et lakehouse', factsMethod:'comprendre, concevoir, valider, livrer',
     heroNote:'PARCOURS TECHNIQUE / 001', heroVisual:'DU PROBLÈME À LA SOLUTION',
@@ -25,7 +25,7 @@ export const homeText = {
     count:'PROJETS', private:'ÉTUDE DE CAS / CODE PRIVÉ', view:'VOIR LE PROJET',
     disclosure:'Ces études de cas s’appuient sur la documentation des dépôts. Elles ne constituent pas une preuve d’adoption en production ni de résultats métier mesurés.',
     approachId:'02 / MA DÉMARCHE', approachTitle1:'Du besoin flou', approachTitle2:'au système fiable',
-    approachIntro:'Mon approche associe connaissance métier, architecture Data, capacité de développement et validation pragmatique. Elle constitue le socle sur lequel je développe mes compétences FDE.',
+    approachIntro:'Mon approche associe compréhension du métier, architecture Data, développement, tests et validation concrète des usages.',
     discoverTitle:'Comprendre le besoin',discoverDesc:'Utilisateurs, objectifs, contraintes, risques et critères de succès avant le choix des outils.',
     designTitle:'Choisir l’architecture adaptée',designDesc:'Définir les interfaces, les données et les composants IA en assumant les compromis.',
     validateTitle:'Éprouver les hypothèses',validateDesc:'Tests reproductibles, jeux de données réalistes, évaluations et observabilité.',
@@ -34,7 +34,7 @@ export const homeText = {
     careerIntro:'Des missions Data de la banque à l’énergie, de la conception à la mise en production, avec une progression vers les rôles de Tech Lead.',
     careerView:'Voir toutes mes expériences', careerRole:'RÔLE', careerClient:'CLIENT',
     labsId:'04 / PROJETS EN CONSTRUCTION', labsTitle1:'Mon prochain chapitre',labsTitle2:'se construit',
-    labsIntro:'Pour progresser vers le métier de FDE, je construis des projets publics reproductibles : intégrations concrètes, évaluations, code et limites documentées. Ces laboratoires sont encore prévus, pas livrés.',
+    labsIntro:'Des expérimentations publiques reproductibles autour de la Data, de l’IA et des intégrations : hypothèses, code, évaluations et limites documentées. Ces travaux sont planifiés, pas encore livrés.',
     labsView:'Consulter la feuille de route', planned:'Prévu',
     historyId:'05 / SOCLE OPEN SOURCE',historyTitle:'Un parcours construit dans le temps',
     historyIntro:'Quelques projets historiques publics qui montrent la diversité de mes premières expérimentations.',
@@ -44,7 +44,7 @@ export const homeText = {
   en: {
     eyebrow:'DATA & AI TECH LEAD',hero1:'Complex data.',hero2:'Useful products',
     heroLead:'I am a Data & AI Tech Lead, building reliable data platforms and practical products that connect engineering with business needs.',
-    heroDirection:'My direction: grow toward Forward Deployed Engineering through real projects, system integrations and measurable evidence.',
+    heroDirection:'I design and deliver practical Data & AI systems, from initial architecture through integration, deployment and real-world use.',
     heroPrimary:'Explore my projects',heroSecondary:'Professional background', factsYears:'years in data engineering',
     factsCore:'cloud and lakehouse foundation',factsMethod:'discover, design, validate, deliver',
     heroNote:'ENGINEERING NOTES / 001', heroVisual:'FROM PROBLEM TO SOLUTION',
@@ -55,7 +55,7 @@ export const homeText = {
     count:'PROJECTS',private:'CASE STUDY / PRIVATE CODE',view:'VIEW PROJECT',
     disclosure:'These case studies are grounded in repository documentation; they do not independently verify production adoption or measured business impact.',
     approachId:'02 / MY APPROACH',approachTitle1:'From messy brief',approachTitle2:'to reliable system',
-    approachIntro:'My process combines business understanding, Data architecture, hands-on development and pragmatic validation — the foundation I am building on for FDE.',
+    approachIntro:'My process combines business understanding, data architecture, hands-on development, testing and pragmatic validation.',
     discoverTitle:'Understand the need',discoverDesc:'Users, goals, constraints, risks and success criteria before choosing tools.',
     designTitle:'Choose the right architecture',designDesc:'Define integrations, data and AI components with clear trade-offs.',
     validateTitle:'Test the assumptions',validateDesc:'Reproducible tests, realistic data, evaluations and observability.',
@@ -63,8 +63,8 @@ export const homeText = {
     careerId:'03 / PROFESSIONAL EXPERIENCE',careerTitle1:'Real-world experience',careerTitle2:'as a foundation',
     careerIntro:'Data engineering engagements across banking, insurance, retail and energy — from implementation through architecture and technical leadership.',
     careerView:'Explore my experience',careerRole:'ROLE',careerClient:'CLIENT',
-    labsId:'04 / BUILDING TOWARD FDE',labsTitle1:'The next chapter',labsTitle2:'is in progress',
-    labsIntro:'To grow into an FDE role, I plan to publish reproducible labs with working integrations, evaluations, code and limitations. These are planned, not completed deliveries.',
+    labsId:'04 / DATA & AI LABS',labsTitle1:'The next chapter',labsTitle2:'is in progress',
+    labsIntro:'Planned, reproducible Data & AI experiments with integrations, code, evaluations and documented limitations. These are not yet shipped.',
     labsView:'Explore the roadmap',planned:'Planned',
     historyId:'05 / OPEN-SOURCE FOUNDATIONS',historyTitle:'Built over time',
     historyIntro:'Earlier public experiments that show the breadth of my engineering journey.',
@@ -85,7 +85,7 @@ export const otherCopy = {
    projectView:'Découvrir les autres projets',sidebar:'En résumé',
    area:'Domaine',visibility:'Visibilité',visibilityValue:'Dépôt privé, synthèse technique publique',
    validation:'Validation',validationValue:'Pas de métriques inventées',
-   expHero:'Mes expériences professionnelles',expIntro:'Des missions et des responsabilités concrètes, du développement Data à l’architecture et au leadership technique. Mon projet FDE se nourrit de ce parcours ; ce n’est pas mon titre actuel.',
+   expHero:'Mes expériences professionnelles',expIntro:'Des missions concrètes, du développement Data à l’architecture et au leadership technique, dans des environnements cloud, bancaires et industriels.',
    expSub:'CLIENTS, RÔLES ET MISSIONS',expRoles:'Missions et responsabilités',
    expEducation:'Formation',expCert:'Certifications',
    roadmapHero:'Construire mon chemin vers le FDE',
@@ -106,7 +106,7 @@ export const otherCopy = {
    projectView:'Explore more work',sidebar:'At a glance',
    area:'Area',visibility:'Visibility',visibilityValue:'Private repository, public technical summary',
    validation:'Validation',validationValue:'No fabricated success metrics',
-   expHero:'Professional experience',expIntro:'Real projects and responsibilities, from Data engineering implementation to architecture and technical leadership. Forward Deployed Engineering is my career direction, not my current title.',
+   expHero:'Professional experience',expIntro:'Client engagements across Data engineering, cloud architecture and technical leadership, from implementation through production delivery.',
    expSub:'CLIENTS, ROLES AND ENGAGEMENTS',expRoles:'Work and responsibilities',
    expEducation:'Education',expCert:'Certifications',
    roadmapHero:'Building my path toward FDE',
@@ -140,11 +140,11 @@ export const labTranslations = {
  fr:[
   {title:'Atelier d’évaluation RAG',focus:'Recherche documentaire, réponses sourcées, citations et gestion de l’incertitude.',proof:'Jeu de questions · Recall@k · Vérification des citations · Coûts / latence'},
   {title:'Pipeline ML industrialisé',focus:'Un pipeline reproductible de la qualité des données au serving et à la supervision.',proof:'Contrôles de fuite · Baselines · MLflow · Signaux de dérive'},
-  {title:'Workflow IA façon Forward Deployed',focus:'Un besoin client réaliste traité avec des outils délimités et une validation humaine.',proof:'Cadrage · Tests d’intégration · Traçage · Runbook'}
+  {title:'Workflow IA métier',focus:'Un besoin client réaliste traité avec des outils délimités et une validation humaine.',proof:'Cadrage · Tests d’intégration · Traçage · Runbook'}
  ],
  en:[
   {title:'RAG Evaluation Studio',focus:'Retrieval, grounded answers, citations and uncertainty.',proof:'Labeled questions · Recall@k · Citation checks · Cost and latency'},
   {title:'Production ML Pipeline',focus:'A reproducible path from data quality to serving and monitoring.',proof:'Leakage checks · Baselines · MLflow · Drift signals'},
-  {title:'Forward Deployed AI Workflow',focus:'A realistic client problem solved with scoped tools and human approval.',proof:'Discovery brief · Integration tests · Tracing · Runbook'}
+  {title:'Applied AI Workflow',focus:'A realistic client problem solved with scoped tools and human approval.',proof:'Discovery brief · Integration tests · Tracing · Runbook'}
  ]
 } as const;
