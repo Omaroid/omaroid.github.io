@@ -22,9 +22,9 @@ for (const path of paths) {
 }
 
 const home = readFileSync(root + 'index.html', 'utf8');
-assert(home.includes('La data complexe.') && home.includes('Des solutions utiles'), 'French hero not generated');
-assert(home.match(/class="project-card"/g)?.length === 6, 'Exactly six flagship projects expected');
-assert(home.includes('data-filter="all"'), 'Filter interaction missing');
+assert(home.includes('Des plateformes data') && home.includes('au service du réel.'), 'French hero not generated');
+assert(home.match(/class="editorial-project"/g)?.length === 6, 'Exactly six flagship projects expected');
+assert(home.includes('brand-mark-large'), 'Portfolio identity illustration missing');
 assert(!home.includes('NEXTAUTH_SECRET') && !home.includes('OPENAI_API_KEY'), 'Sensitive variable label in generated output');
 
 const sitemap = readFileSync(root + 'sitemap.xml', 'utf8');
@@ -145,7 +145,7 @@ for (const logo of techLogos) {
   const svg = readFileSync(file, 'utf8');
   assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe SVG asset: ' + logo);
 }
-for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/experience/index.html']) {
+for (const file of ['experience/index.html', 'en/experience/index.html']) {
   const html = readFileSync(root + file, 'utf8');
   assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
   assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
@@ -162,7 +162,7 @@ for (const logo of clientLogos) {
     assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe client SVG: ' + logo);
   }
 }
-for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
+for (const file of ['experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('premium-surface'), 'Premium design missing from ' + file);
   assert(html.includes('/logos/clients/engie.png'), 'ENGIE logo missing from ' + file);
@@ -172,8 +172,8 @@ for (const file of ['index.html','en/index.html','experience/index.html','en/exp
   assert(html.includes("img-src &#39;self&#39; data:") || html.includes("img-src 'self' data:"), 'Self-hosted image policy missing from ' + file);
 }
 for (const logo of clientLogos) {
-  assert(frenchHome.includes('/logos/clients/' + logo), 'Company logo missing from French homepage: ' + logo);
-  assert(englishHome.includes('/logos/clients/' + logo), 'Company logo missing from English homepage: ' + logo);
+  assert(frenchExperience.includes('/logos/clients/' + logo), 'Company logo missing from French experience page: ' + logo);
+  assert(englishExperience.includes('/logos/clients/' + logo), 'Company logo missing from English experience page: ' + logo);
 }
 // Project favicons are copied from actual project repositories where available.
 const projectIcons = {
@@ -201,7 +201,7 @@ for (const file of ['index.html','en/index.html','experience/index.html','en/exp
 for (const file of ['index.html','en/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('project-icon-image'), 'Favicon-led project identity missing in ' + file);
-  assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
+  assert(html.includes('brand-mark-large'), 'Portfolio identity illustration missing from ' + file);
 }
 
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');

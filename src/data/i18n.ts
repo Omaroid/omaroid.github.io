@@ -6,8 +6,8 @@ export const pathFor = (lang: Lang, path: string): string =>
 export const opposite = (lang: Lang): Lang => lang === 'fr' ? 'en' : 'fr';
 
 export const nav = {
-  fr: {work:'Projets', approach:'Ma démarche', experience:'Expériences', labs:'Laboratoires IA', github:'GitHub', skip:'Aller au contenu', logo:'Accueil'},
-  en: {work:'Projects', approach:'Approach', experience:'Experience', labs:'AI labs', github:'GitHub', skip:'Skip to content', logo:'Home'}
+  fr: {work:'Projets', approach:'À propos', experience:'Expériences', labs:'Feuille de route', github:'GitHub', skip:'Aller au contenu', logo:'Accueil'},
+  en: {work:'Projects', approach:'About', experience:'Experience', labs:'Roadmap', github:'GitHub', skip:'Skip to content', logo:'Home'}
 } as const;
 
 export const homeText = {
