@@ -225,7 +225,7 @@ for (const file of ['index.html','en/index.html']) {
 }
 for (const file of ['experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
-  assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
+  assert(html.includes('timeline-client-brand'), 'Client identity marks missing from ' + file);
 }
 
 console.log('Bilingual static build verified: ' + paths.length + ' core files and 14 case studies.');
