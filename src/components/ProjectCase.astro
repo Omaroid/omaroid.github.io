@@ -19,6 +19,7 @@ const t = otherCopy[lang];
       <div class="case-project-heading"><ProjectIcon slug={project.slug} variant="detail" /><h1>{project.title}<span class="accent">.</span></h1></div>
       <p class="inner-lead">{project.short}</p>
       <div class="case-meta"><span>{project.status}</span><span>{t.case}</span><span>{t.sensitive}</span></div>
+      {project.demoUrl && <a class="text-link content-offset-sm" href={project.demoUrl} target="_blank" rel="noopener noreferrer">{lang === 'fr' ? 'Ouvrir la démo publique' : 'Open public demo'} ↗</a>}
     </div>
   </section>
   <div class="shell case-content">
