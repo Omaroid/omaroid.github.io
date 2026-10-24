@@ -26,7 +26,7 @@ for (const path of paths) {
 }
 
 const home = readFileSync(root + 'index.html', 'utf8');
-assert(home.includes('La data complexe.') && home.includes('Des solutions utiles'), 'French hero not generated');
+assert(home.includes('Des plateformes data') && home.includes('au service du réel'), 'French editorial hero not generated');
 assert(home.match(/class="editorial-project(?: archive-project)?"/g)?.length === 14, 'All 14 documented project cards expected');
 assert(home.includes('PB Farmer') && home.includes('IoT Fireman'), 'IoT projects are missing from the portfolio');
 assert(home.includes('Demander l’accès') && home.includes('Voir le dépôt'), 'Repository access actions are missing');
@@ -55,8 +55,8 @@ for (const path of bilingualPaths) {
 const frenchHome = readFileSync(root + 'index.html', 'utf8');
 const englishHome = readFileSync(root + 'en/index.html', 'utf8');
 assert(frenchHome.includes('lang="fr"'), 'Home must be primarily French');
-assert(frenchHome.includes('Tech Lead Data'), 'French hero missing current role');
-assert(englishHome.includes('Data') && englishHome.includes('Tech Lead'), 'English hero missing current role');
+assert(frenchHome.includes('SENIOR DATA ENGINEER &amp; IA APPLIQUÉE'), 'French hero missing current positioning');
+assert(englishHome.includes('SENIOR DATA ENGINEER &amp; APPLIED AI'), 'English hero missing current positioning');
 assert(frenchHome.includes('projets'), 'French homepage not translated');
 assert(frenchHome.includes('href="/en/"'), 'FR -> EN switch missing');
 assert(englishHome.includes('href="/"'), 'EN -> FR switch missing');
