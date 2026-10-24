@@ -222,6 +222,9 @@ for (const file of ['index.html','en/index.html','experience/index.html','en/exp
 for (const file of ['index.html','en/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('project-icon-image'), 'Favicon-led project identity missing in ' + file);
+}
+for (const file of ['experience/index.html','en/experience/index.html']) {
+  const html = readFileSync(root+file,'utf8');
   assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
 }
 
