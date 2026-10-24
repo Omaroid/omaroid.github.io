@@ -15,7 +15,7 @@ The portfolio ships six favicon-sized project marks under `public/project-icons/
 | Mission Radar | Existing original dashboard favicon (`public/favicon.svg`) | `mission-radar.svg` |
 | PokéValue | Existing original app favicon (`public/favicon.svg`) | `pokevalue.svg` |
 | SA-OS | No favicon was found in the project's repository | `sa-os.svg` — an original editorial fallback, **not** a source favicon |
-| BLOOM Terminal | No favicon was found in the project's repository | `bloom-terminal.svg` — an original editorial fallback, **not** a source favicon |
+| Lakehouse Signal | Original selected project mark | `lakehouse-signal.png` — generated project identity used by the portfolio |
 
 Only visual assets, **not private source code or secrets**, are included in the portfolio. The original PNG files are stored losslessly as checked-in Base64 under `src/assets/project-icons/`. GitHub's text-only connector required this representation. The zero-dependency `scripts/materialize-project-favicons.mjs` restores the exact PNG bytes before `astro build` and `astro dev`. All six project icons are self-hosted and accessible without a third-party dependency.
 
