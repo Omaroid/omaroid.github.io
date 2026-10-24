@@ -19,30 +19,8 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'dossierpro',
-    index: '01',
-    title: 'DossierPro',
-    short: 'From fragmented candidate information to structured, AI-assisted recruitment workflows.',
-    eyebrow: 'Product engineering / Applied AI',
-    category: 'ai',
-    categoryName: 'AI products',
-    status: 'Private source · Public case study',
-    stack: ['Next.js', 'TypeScript', 'OpenAI', 'PostgreSQL', 'Redis', 'Apify'],
-    problem: 'Recruitment teams work across unstructured CVs, online profiles and client requirements. Turning those inputs into useful candidate records and tailored dossiers requires more than a single model call.',
-    approach: [
-      'Import candidate data from CVs and supported profile sources via separate ingestion workflows.',
-      'Structure profiles, match candidate information to client needs and produce tailored dossier outputs.',
-      'Handle long-running processing asynchronously and surface progress to the user.',
-      'Build sharing and operational safeguards around the AI-assisted application.'
-    ],
-    decision: 'Treat AI extraction as one component of a traceable application workflow, not as the whole product.',
-    evidence: 'A private implementation and substantial project documentation exist. Production adoption, model extraction accuracy, latency and customer outcomes have not been independently verified.',
-    next: ['Evaluate extraction accuracy on consented sample CVs.', 'Test retries, duplicate imports and evidence grounding.', 'Publish a sanitized product walkthrough.'],
-    motif: 'orbit'
-  },
-  {
     slug: 'retail-churn-copilot',
-    index: '02',
+    index: '01',
     title: 'Retail Churn Copilot',
     short: 'A conversational analytics application on top of a Databricks-native data platform.',
     eyebrow: 'Data platform / AI analytics',
@@ -61,6 +39,28 @@ export const projects: Project[] = [
     evidence: 'The private repository includes React/TypeScript client and server code, AppKit plugins, and Databricks deployment configuration. It does not prove a live customer rollout or retention lift.',
     next: ['Demonstrate a fully traceable question-to-query-to-answer flow.', 'Validate row-level permissions and ambiguous questions.', 'Measure usability against a SQL-only baseline.'],
     motif: 'wave'
+  },
+  {
+    slug: 'dossierpro',
+    index: '02',
+    title: 'DossierPro',
+    short: 'From fragmented candidate information to structured, AI-assisted recruitment workflows.',
+    eyebrow: 'Product engineering / Applied AI',
+    category: 'ai',
+    categoryName: 'AI products',
+    status: 'Private source · Public case study',
+    stack: ['Next.js', 'TypeScript', 'OpenAI', 'PostgreSQL', 'Redis', 'Apify'],
+    problem: 'Recruitment teams work across unstructured CVs, online profiles and client requirements. Turning those inputs into useful candidate records and tailored dossiers requires more than a single model call.',
+    approach: [
+      'Import candidate data from CVs and supported profile sources via separate ingestion workflows.',
+      'Structure profiles, match candidate information to client needs and produce tailored dossier outputs.',
+      'Handle long-running processing asynchronously and surface progress to the user.',
+      'Build sharing and operational safeguards around the AI-assisted application.'
+    ],
+    decision: 'Treat AI extraction as one component of a traceable application workflow, not as the whole product.',
+    evidence: 'A private implementation and substantial project documentation exist. Production adoption, model extraction accuracy, latency and customer outcomes have not been independently verified.',
+    next: ['Evaluate extraction accuracy on consented sample CVs.', 'Test retries, duplicate imports and evidence grounding.', 'Publish a sanitized product walkthrough.'],
+    motif: 'orbit'
   },
   {
     slug: 'mission-radar',
@@ -197,9 +197,9 @@ export const foundations = [
     url: 'https://github.com/Omaroid/InfoVisWorldInequality'
   },
   {
-    title: 'Hex Game AI',
-    year: 'Historical / Python',
-    summary: 'Algorithms, game agent and a graphical client/server.',
-    url: 'https://github.com/Omaroid/hexGameAI'
+    title: 'Brent Oil Price Forecast',
+    year: 'Historical / Prophet',
+    summary: 'Time-series forecasting exploration on historical Brent prices; model accuracy is not independently benchmarked.',
+    url: 'https://github.com/Omaroid/BlentOilPriceForcastProphet'
   }
 ] as const;

@@ -15,16 +15,18 @@ export const career: CareerRole[] = [
     title: { fr: 'Tech Lead Data', en: 'Data Tech Lead' },
     highlights: {
       fr: [
-        'Migration d’une plateforme data Palantir Foundry vers une architecture Lakehouse AWS et Databricks.',
-        'Conception des traitements PySpark et de la structuration Bronze / Silver / Gold avec Delta Lake.',
-        'Industrialisation DataOps : déploiements, surveillance des pipelines, optimisation Spark et FinOps.',
-        'Fiabilisation et gouvernance des jeux de données pour les usages Data Science et IA générative.'
+        'Migration de Palantir Foundry vers une architecture Lakehouse AWS et Databricks pour moderniser la plateforme Data.',
+        'Conception d’une architecture Data Lake et Delta Lake pour centraliser les sources et renforcer la gouvernance des jeux de données.',
+        'Développement de pipelines PySpark industrialisés et structuration Medallion Bronze / Silver / Gold.',
+        'Optimisation des traitements Spark et des clusters Databricks, des déploiements DataOps et des coûts cloud (FinOps).',
+        'Préparation de jeux de données fiables, traçables et gouvernés pour les équipes Data Science et les cas d’usage d’IA générative.'
       ],
       en: [
-        'Migration from Palantir Foundry to an AWS and Databricks Lakehouse architecture.',
-        'PySpark data pipelines and Bronze / Silver / Gold layers on Delta Lake.',
-        'DataOps practices for deployments, pipeline monitoring, Spark performance and FinOps.',
-        'Reliable, governed datasets supporting Data Science and generative AI use cases.'
+        'Migrating Palantir Foundry to an AWS and Databricks Lakehouse architecture to modernize the data platform.',
+        'Designing Data Lake and Delta Lake foundations to centralize sources and strengthen dataset governance.',
+        'Developing industrialized PySpark pipelines and Bronze / Silver / Gold Medallion layers.',
+        'Optimizing Spark jobs and Databricks clusters, DataOps deployments and cloud costs (FinOps).',
+        'Preparing reliable, traceable and governed datasets for Data Science teams and generative AI use cases.'
       ]
     },
     technologies: ['AWS', 'Databricks', 'PySpark', 'Delta Lake', 'DataOps', 'FinOps']
@@ -35,19 +37,21 @@ export const career: CareerRole[] = [
     title: { fr: 'Tech Lead Architecte Data', en: 'Data Architect & Tech Lead' },
     highlights: {
       fr: [
-        'Architecture et déploiement de services cloud et de pipelines d’ingestion et transformation.',
+        'Conception et déploiement de services cloud et de pipelines robustes d’ingestion et de transformation.',
         'Développement d’API et d’intégrations avec Azure Functions et Azure API Management.',
-        'Sécurité, gouvernance et conformité RGPD ; suivi FinOps et performances.',
-        'Animation d’ateliers techniques avec Data Scientists, Data Stewards et Data Analysts, et structuration des revues de code.'
+        'Renforcement de la sécurité cloud, de la gouvernance des données et de la conformité RGPD, avec audits et suivi FinOps.',
+        'Structuration des pratiques de développement : Git Flow, revues de code et ateliers techniques.',
+        'Travail avec les équipes Data Science, Data Stewards et Data Analysts sur les jeux de données pour les usages analytiques et prédictifs.'
       ],
       en: [
-        'Cloud solution architecture and delivery of robust ingestion and transformation pipelines.',
-        'APIs and system integrations using Azure Functions and Azure API Management.',
-        'Security, GDPR-aware governance, cost optimization and operational performance.',
-        'Technical workshops with data science, stewardship and analytics stakeholders; code-review practices.'
+        'Designed and delivered cloud services and robust data-ingestion and transformation pipelines.',
+        'Developed APIs and integrations with Azure Functions and Azure API Management.',
+        'Strengthened cloud security, data governance and GDPR compliance through audits and FinOps tracking.',
+        'Structured development practices through Git Flow, code reviews and technical workshops.',
+        'Worked with Data Science, Data Steward and Data Analyst teams on datasets for analytics and predictive use cases.'
       ]
     },
-    technologies: ['Azure', 'Databricks', 'Azure Functions', 'API Management', 'FinOps', 'Governance']
+    technologies: ['Azure', 'Databricks', 'Informatica', 'Azure Functions', 'API Management', 'Git Flow', 'FinOps']
   },
   {
     client: 'iQera', city: 'Paris',
@@ -55,17 +59,19 @@ export const career: CareerRole[] = [
     title: { fr: 'Senior Cloud Data Engineer', en: 'Senior Cloud Data Engineer' },
     highlights: {
       fr: [
-        'Migration des cubes BI et tables décisionnelles depuis plusieurs sources vers Azure Data Lake.',
-        'Ingestion et transformations en Python, SQL et PySpark, avec stockage Delta et Parquet.',
-        'Mise en place des zones Bronze / Silver / Gold, des ACL et des déploiements Azure DevOps.'
+        'Migration de cubes BI et de tables de faits et de dimensions depuis plusieurs sources (IBM, PostgreSQL) vers Azure Data Lake.',
+        'Ingestion et transformations avec Python, SQL et PySpark 3, en formats Delta et Parquet.',
+        'Transferts depuis les serveurs internes avec AZCopy et usage d’Azure Databricks, Data Factory et Storage Gen2.',
+        'Mise en place des zones Bronze / Silver / Gold, des ACL et des déploiements d’artefacts via Azure DevOps.'
       ],
       en: [
-        'Migration of BI cubes, fact and dimension tables from multiple sources to Azure Data Lake.',
-        'Python, SQL and PySpark ingestion and transformation using Delta and Parquet.',
-        'Bronze / Silver / Gold layers, access controls and Azure DevOps deployment pipelines.'
+        'Migrated BI cubes and fact and dimension tables from multiple sources (IBM, PostgreSQL) to Azure Data Lake.',
+        'Built ingestion and transformation workflows with Python, SQL and PySpark 3, using Delta and Parquet formats.',
+        'Transferred data from internal servers with AZCopy and used Azure Databricks, Data Factory and Storage Gen2.',
+        'Implemented Bronze / Silver / Gold layers, ACLs and artifact deployments through Azure DevOps.'
       ]
     },
-    technologies: ['Azure', 'Databricks', 'PySpark', 'Data Factory', 'Azure DevOps']
+    technologies: ['Azure', 'Databricks', 'PySpark', 'AZCopy', 'Data Factory', 'Storage Gen2', 'Azure DevOps']
   },
   {
     client: 'AXA', city: 'Paris',
@@ -74,7 +80,7 @@ export const career: CareerRole[] = [
     highlights: {
       fr: [
         'Recueil des besoins de données avec plusieurs directions et parties prenantes.',
-        'Amélioration des performances de calcul et de la qualité du code.',
+        'Amélioration des performances de calcul et de la qualité du code de traitement.',
         'Suivi de la fiabilité des pipelines et de la qualité des données produites.'
       ],
       en: [
@@ -93,8 +99,8 @@ export const career: CareerRole[] = [
       fr: [
         'Migration de tables SSAS depuis SQL Server vers Azure Data Lake.',
         'Traitements Scala, Python, SQL et Spark 3 pour les chaînes analytiques Delta / Parquet.',
-        'Automatisation de pipelines Azure Data Factory et de déploiements Azure DevOps.',
-        'Tests de qualité avec Deequ et tests BDD/Cucumber pour les données Spark.'
+        'Automatisation des pipelines Azure Data Factory et des déploiements Azure DevOps, avec gestion des ACL.',
+        'Suivi de production et tests de qualité avec Deequ et Cucumber pour les traitements Spark.'
       ],
       en: [
         'Migrated SSAS tables from SQL Server to Azure Data Lake.',
@@ -111,14 +117,16 @@ export const career: CareerRole[] = [
     title: { fr: 'Data Engineer Hadoop', en: 'Hadoop Data Engineer' },
     highlights: {
       fr: [
-        'Prototypage et mise en place d’une architecture de calcul des réserves de marché sur Hadoop.',
-        'Développement Python, PySpark, Scala, Hive SQL et orchestration Control-M.',
-        'Tests BDD avec Cucumber/Gherkin, CI/CD Jenkins, XLDeploy et XLRelease.'
+        'Prototypage et conception d’une architecture Hadoop pour le calcul des réserves de marché.',
+        'Développements Python, PySpark, Scala et Hive SQL ; planification quotidienne des traitements avec Control-M.',
+        'Tests fonctionnels BDD avec Cucumber / Gherkin et chaînes CI/CD avec Jenkins, XLDeploy et XLRelease.',
+        'Documentation technique sur Confluence et suivi des travaux avec Jira et ServiceNow.'
       ],
       en: [
-        'Prototyped and engineered a Hadoop architecture for market reserve calculations.',
-        'Python, PySpark, Scala and Hive SQL processing, scheduled with Control-M.',
-        'BDD tests with Cucumber/Gherkin and CI/CD using Jenkins, XLDeploy and XLRelease.'
+        'Prototyped and designed a Hadoop architecture for market-reserve calculations.',
+        'Developed with Python, PySpark, Scala and Hive SQL; scheduled daily processing with Control-M.',
+        'Added BDD functional tests with Cucumber / Gherkin and CI/CD pipelines with Jenkins, XLDeploy and XLRelease.',
+        'Wrote technical documentation in Confluence and tracked work in Jira and ServiceNow.'
       ]
     },
     technologies: ['Hadoop', 'Spark', 'Scala', 'Hive', 'Control-M', 'Jenkins']
@@ -129,14 +137,14 @@ export const career: CareerRole[] = [
     title: { fr: 'Data Engineer / Scientist — stage', en: 'Data Engineer / Scientist — internship' },
     highlights: {
       fr: [
-        'Recherche et prototypage d’un système de parsing de CV : segmentation, classification et reconnaissance d’entités.',
-        'Classification en pile avec Naive Bayes, SVM et Random Forest, précision de 89 % indiquée dans le CV.',
-        'Intégration au portail de l’entreprise pour faciliter les profils et le rapprochement avec les missions.'
+        'Étude et prototypage d’un système de parsing de CV combinant segmentation, classification et reconnaissance d’entités nommées.',
+        'Classification en pile avec Naive Bayes, SVM et Random Forest ; le CV indique une précision de 89 %.',
+        'Intégration au portail de l’entreprise pour la saisie des CV et le rapprochement des profils avec les missions.'
       ],
       en: [
-        'Research and prototype for CV parsing, layout segmentation, classification and named-entity recognition.',
-        'Stacked classification with Naive Bayes, SVM and Random Forest; résumé reports 89% precision.',
-        'Integrated the approach with a company portal supporting candidate ranking and matching.'
+        'Researched and prototyped CV parsing with layout segmentation, classification and named-entity recognition.',
+        'Stacked Naive Bayes, SVM and Random Forest classifiers; the résumé reports 89% precision.',
+        'Integrated the work into the company portal for CV entry and matching profiles to assignments.'
       ]
     },
     technologies: ['Python', 'NLP', 'NER', 'Scikit-learn', 'Classification']
@@ -147,14 +155,14 @@ export const career: CareerRole[] = [
     title: { fr: 'Data Engineer / Scientist — stage', en: 'Data Engineer / Scientist — internship' },
     highlights: {
       fr: [
-        'Intégration d’une application Angular / Node.js à l’API REST Salesforce.',
+        'Intégration d’une application Angular / Node.js à l’API REST Salesforce et développement sur la plateforme (SOQL, Apex, Visualforce).',
         'Expérimentation en NLP et Deep Learning avec Python, spaCy, Word2Vec et Seq2Seq.',
-        'Travaux sur les intégrations, les droits d’accès, les workflows et les tests REST Salesforce.'
+        'Tests REST des restrictions de champs, processus et workflows Salesforce.'
       ],
       en: [
-        'Integrated an Angular / Node.js application with Salesforce REST APIs.',
+        'Integrated an Angular / Node.js application with Salesforce REST APIs and developed on the platform (SOQL, Apex, Visualforce).',
         'Explored NLP and deep learning with Python, spaCy, Word2Vec and Seq2Seq.',
-        'Contributed to Salesforce integrations, permissions, workflows and REST tests.'
+        'Used REST tests to validate Salesforce field restrictions, processes and workflows.'
       ]
     },
     technologies: ['Salesforce', 'REST APIs', 'Angular', 'Node.js', 'Python', 'NLP']
@@ -164,7 +172,7 @@ export const career: CareerRole[] = [
 export const education = [
   {
     school: 'ENSIMAG',
-    dates: '2019–2020',
+    dates: '09/2019 – 08/2020',
     degree: {
       fr: 'Master de recherche en Intelligence Artificielle et Web Sémantique',
       en: 'Research Master’s degree in Artificial Intelligence and Semantic Web'
@@ -172,7 +180,7 @@ export const education = [
   },
   {
     school: 'ENSIMAG',
-    dates: '2018–2019',
+    dates: '09/2018 – 08/2019',
     degree: {
       fr: 'Diplôme d’ingénieur d’État en Ingénierie des Systèmes d’Information',
       en: 'Engineering degree in Information Systems Engineering'
@@ -180,7 +188,7 @@ export const education = [
   },
   {
     school: 'ENSIAS',
-    dates: '2016–2018',
+    dates: '09/2016 – 08/2018',
     degree: {
       fr: 'Diplôme d’ingénieur d’État en E-Management et Business Intelligence',
       en: 'Engineering degree in E-Management and Business Intelligence'
@@ -192,9 +200,15 @@ export const certifications = [
   'Databricks Certified Data Engineer Professional',
   'Databricks Certified Data Engineer Associate',
   'Azure Databricks Platform Architect',
-  'Databricks Certified Associate Developer for Apache Spark',
+  'Databricks Certified Associate Developer for Apache Spark 3.0',
   'Microsoft Azure Data Engineer Associate (DP-203)',
   'Astronomer DAG Authoring for Apache Airflow 3',
   'Microsoft Azure Data Fundamentals (DP-900)',
-  'Microsoft Azure Fundamentals (AZ-900)'
+  'Microsoft Azure Fundamentals (AZ-900)',
+  'TPM1x: Creative Problem Solving and Decision Making — Delft University of Technology'
+] as const;
+
+export const languages: { name: { fr: string; en: string }; level?: string }[] = [
+  { name: { fr: 'Français', en: 'French' } },
+  { name: { fr: 'Anglais', en: 'English' }, level: 'TOEIC C2' }
 ] as const;

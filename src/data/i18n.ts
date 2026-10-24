@@ -127,12 +127,12 @@ export const foundationTranslations: Record<Lang,{title:string;summary:string}[]
  fr:[
   {title:'API de données COVID-19',summary:'Collecte de données publiques et API Python — projet historique archivé.'},
   {title:'Visualisation des inégalités',summary:'Visualisations interactives en D3.js et narration par la donnée.'},
-  {title:'Intelligence artificielle pour le jeu Hex',summary:'Algorithmes Python, agent de jeu et client / serveur graphique.'}
+  {title:'Prévision du prix du Brent',summary:'Exploration de prévisions de séries temporelles sur les cours historiques du Brent ; la précision du modèle n’a pas été évaluée de façon indépendante.'}
  ],
  en:[
   {title:'COVID-19 Data API',summary:'Public data ingestion and Python API — historical archived project.'},
   {title:'World Inequality Visuals',summary:'Interactive D3.js analytics and data storytelling.'},
-  {title:'Hex Game AI',summary:'Python algorithms, AI game agent and graphical client / server.'}
+  {title:'Brent Oil Price Forecast',summary:'Time-series forecasting exploration on historical Brent prices; model accuracy is not independently benchmarked.'}
  ]
 };
 

@@ -148,23 +148,32 @@ for (const logo of techLogos) {
 for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/experience/index.html']) {
   const html = readFileSync(root + file, 'utf8');
   assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
-  assert(!/src="https?:\/\/(?!img\.anylogo\.dev\/)/i.test(html), 'Unexpected external image in ' + file);
+  assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
 }
 
 
-// Company logos come directly from the reviewed image CDN, rather than imitation artwork.
-const companyDomains = ['engie.com','afflelou.com','iqera.com','axa.com','natixis.com','ingeniance.fr','edifixio.com'];
+// Company identity marks are self-hosted and do not contact a logo CDN.
+const clientLogos = ['engie.png','afflelou.png','iqera.png','axa.png','natixis.svg','ingeniance.png','edifixio.png'];
+for (const logo of clientLogos) {
+  const file = root + 'logos/clients/' + logo;
+  assert(existsSync(file), 'Missing locally hosted client logo: ' + logo);
+  if (logo.endsWith('.svg')) {
+    const svg = readFileSync(file, 'utf8');
+    assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe client SVG: ' + logo);
+  }
+}
 for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('premium-surface'), 'Premium design missing from ' + file);
-  assert(html.includes('img.anylogo.dev/engie.com'), 'ENGIE CDN logo missing from ' + file);
-  assert(html.includes('img.anylogo.dev/axa.com'), 'AXA CDN logo missing from ' + file);
-  assert(!html.includes('/logos/clients/'), 'Old fabricated company artwork remains in ' + file);
-  assert(html.includes('img-src') && html.includes('https://img.anylogo.dev'), 'CDN missing from restrictive CSP on ' + file);
+  assert(html.includes('/logos/clients/engie.png'), 'ENGIE logo missing from ' + file);
+  assert(html.includes('/logos/clients/natixis.svg'), 'Natixis logo missing from ' + file);
+  assert(html.includes('/logos/clients/edifixio.png'), 'Edifixio logo missing from ' + file);
+  assert(!html.includes('img.anylogo.dev'), 'Third-party logo CDN remains in ' + file);
+  assert(html.includes("img-src &#39;self&#39; data:") || html.includes("img-src 'self' data:"), 'Self-hosted image policy missing from ' + file);
 }
-for (const domain of companyDomains) {
-  assert(frenchHome.includes('img.anylogo.dev/' + domain), 'Company logo CDN source missing: ' + domain);
-  assert(englishHome.includes('img.anylogo.dev/' + domain), 'Company logo CDN source missing in English: ' + domain);
+for (const logo of clientLogos) {
+  assert(frenchHome.includes('/logos/clients/' + logo), 'Company logo missing from French homepage: ' + logo);
+  assert(englishHome.includes('/logos/clients/' + logo), 'Company logo missing from English homepage: ' + logo);
 }
 // Project favicons are copied from actual project repositories where available.
 const projectIcons = {

@@ -97,11 +97,14 @@ jobs:
                grep -q 'Data & AI Tech Lead' /tmp/portfolio-en.html &&
                grep -q 'ENGIE' /tmp/portfolio-experience.html &&
                grep -q 'premium-surface' /tmp/portfolio-fr.html &&
-               grep -q 'img.anylogo.dev/engie.com' /tmp/portfolio-fr.html &&
+               grep -q '/logos/clients/natixis.svg' /tmp/portfolio-fr.html &&
+               grep -q '/logos/clients/edifixio.png' /tmp/portfolio-fr.html &&
                grep -q '/project-icons/dossierpro.png' /tmp/portfolio-fr.html &&
                grep -q '/project-icons/mission-radar.svg' /tmp/portfolio-fr.html &&
                curl --fail --silent --show-error --location --max-time 12 "$SITE/project-icons/dossierpro.png" -o /tmp/dossierpro-favicon.png &&
-               curl --fail --silent --show-error --location --max-time 12 "$SITE/project-icons/mission-radar.svg" -o /tmp/radar-favicon.svg; then
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/project-icons/mission-radar.svg" -o /tmp/radar-favicon.svg &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/logos/clients/natixis.svg" -o /tmp/natixis-logo.svg &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/logos/clients/edifixio.png" -o /tmp/edifixio-logo.png; then
               echo "Production HTTPS and FR/EN experience pages verified"
               exit 0
             fi
