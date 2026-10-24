@@ -2,31 +2,29 @@
 interface Props { name: string; size?: 'normal' | 'small' }
 const { name, size = 'normal' } = Astro.props;
 
-// Official corporate domains are used as lookup keys by AnyLogo's CDN.
-// The CDN may serve an icon, a wordmark or a monogram fallback; our text
-// label always remains readable independently of the remote image.
-const domains: Record<string, string> = {
-  'ENGIE': 'engie.com',
-  'Groupe Alain Afflelou': 'afflelou.com',
-  'iQera': 'iqera.com',
-  'AXA': 'axa.com',
-  'Natixis': 'natixis.com',
-  'Ingeniance': 'ingeniance.fr',
-  'Edifixio': 'edifixio.com'
+// Self-hosted marks keep company identity available without a third-party
+// request. The visible company name remains the accessible text label.
+const logos: Record<string, string> = {
+  'ENGIE': 'engie.png',
+  'Groupe Alain Afflelou': 'afflelou.png',
+  'iQera': 'iqera.png',
+  'AXA': 'axa.png',
+  'Natixis': 'natixis.svg',
+  'Ingeniance': 'ingeniance.png',
+  'Edifixio': 'edifixio.png'
 };
-const domain = domains[name];
+const logo = logos[name];
 ---
-{domain && (
+{logo && (
   <span class={'client-identity client-identity-' + size}>
     <img
       class="client-identity-logo"
-      src={'https://img.anylogo.dev/' + domain + '?size=128&fallback=monogram'}
+      src={'/logos/clients/' + logo}
       width="44"
       height="44"
       alt=""
       loading="lazy"
       decoding="async"
-      referrerpolicy="no-referrer"
     />
     <span class="client-identity-name">{name}</span>
   </span>

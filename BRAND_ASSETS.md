@@ -19,21 +19,21 @@ The portfolio ships six favicon-sized project marks under `public/project-icons/
 
 Only visual assets, **not private source code or secrets**, are included in the portfolio. The original PNG files are stored losslessly as checked-in Base64 under `src/assets/project-icons/`. GitHub's text-only connector required this representation. The zero-dependency `scripts/materialize-project-favicons.mjs` restores the exact PNG bytes before `astro build` and `astro dev`. All six project icons are self-hosted and accessible without a third-party dependency.
 
-## Client and employer logos: CDN delivery
+## Client and employer marks: local assets
 
-The site renders logo images from the free, keyless [AnyLogo CDN](https://anylogo.dev/docs/logos/) by **company website domain**:
+All company marks are served from `public/logos/clients/`, with the company name retained as visible text. This avoids a third-party request for logos, fixes the former AnyLogo `403 Forbidden` responses, and keeps the image policy self-hosted. Employer references identify past work and do not claim endorsement.
 
-- ENGIE: `engie.com`
-- Groupe Alain Afflelou: `afflelou.com`
-- iQera: `iqera.com`
-- AXA: `axa.com`
-- Natixis: `natixis.com`
-- Ingeniance: `ingeniance.fr`
-- Edifixio: `edifixio.com`
+| Company | Local asset | Source / note |
+| --- | --- | --- |
+| ENGIE | `engie.png` | Favicon snapshot for `engie.com`, fetched through Google's favicon service |
+| Groupe Alain Afflelou | `afflelou.png` | Favicon snapshot for `afflelou.com`, fetched through Google's favicon service |
+| iQera | `iqera.png` | Favicon snapshot for `iqera.com`, fetched through Google's favicon service |
+| AXA | `axa.png` | Favicon snapshot for `axa.com`, fetched through Google's favicon service |
+| Natixis | `natixis.svg` | Cropped mark from [Natixis.svg on Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Natixis.svg); the visible company name is separate HTML text. |
+| Ingeniance | `ingeniance.png` | Favicon snapshot for `ingeniance.fr`, fetched through Google's favicon service |
+| Edifixio | `edifixio.png` | Mark cropped from the high-resolution company logo in the [Edifixio Salesforce AppExchange listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3000000B5c6fEAB). |
 
-Each remote image uses `https://img.anylogo.dev/{domain}?size=128&fallback=monogram` and is accompanied by the real company name as plain HTML text so the identity remains understandable if image requests fail. Logo availability, brand choice, correctness and freshness depend on the CDN; a monogram fallback is possible. Employer references are not an endorsement claim. Old invented client-logo assets have been removed.
-
-**Privacy and availability trade-off:** Loading company images from a third-party CDN causes the visitor's browser to contact `img.anylogo.dev`, sharing an IP address with that image host. The image elements use `referrerpolicy="no-referrer"`. The site does not call the provider API in JavaScript and does not embed third-party scripts. A restrictive CSP allows precisely this logo image host in `img-src`; other external images, fonts, trackers and executable scripts remain blocked.
+Company marks may be trademarks of their owners. The site does not imply endorsement. Favicon snapshots are static local files, not dynamically updated; replace them if a company changes its mark. The strict CSP now allows images only from the site itself and `data:`.
 
 ## Technology logos
 

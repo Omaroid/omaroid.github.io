@@ -30,7 +30,7 @@ Changing Pages build source can briefly affect availability. If the Pages source
 
 Edit src/data/content.ts to add/change featured projects. Keep summaries accurate and differentiate planned, prototype, working application and deployed product.
 
-Local commands: npm install, npm run build, npm run check. Node.js 24 is used in CI. Astro is pinned to 7.0.0.
+Local commands: `npm ci`, `npm run build`, `npm run check`. CI uses Node.js 24; Astro is pinned to 7.4.2 in `package.json` and `package-lock.json`.
 
 No private repo contents, API secrets, personal records, customer data or environment tokens should be imported into the public site. Verify rights to screenshots and public material. Check all branches and history with a secret scanner before publishing additions.
 
