@@ -59,17 +59,17 @@ const fr: Record<string, Partial<Project>> = {
     next:['Publier un scénario de découverte fictif.','Décrire une architecture de bout en bout vérifiable.','Évaluer la traçabilité obtenue.']
   },
   'bloom-terminal':{
-    short:'Un espace de veille cloud et data reliant sources, projets suivis et notes de recherche.',
-    eyebrow:'Veille technologique / Systèmes',categoryName:'Systèmes',status:'Code privé · Application',
+    short:'Un espace de veille Databricks, data et cloud qui relie des flux publics aux projets suivis et aux notes de recherche.',
+    eyebrow:'Veille technologique / Systèmes',categoryName:'Systèmes',status:'Code privé · Démo publique',
     problem:'Les nouveautés cloud et data sont dispersées entre éditeurs et formats ; les relier aux projets en cours prend du temps.',
     approach:[
       'Agréger les flux publics dans une interface dédiée.',
       'Filtrer par source, thématique et projet suivi.',
       'Conserver les notes de recherche et les liens d’origine.',
-      'Documenter l’intégration continue et le déploiement éventuel sur Vercel.'
+      'Servir l’application publique avec une fonction Netlify et un bundle statique limité aux ressources de l’interface.'
     ],
     decision:'Privilégier des sources attribuées et des signaux déterministes aux affirmations IA non vérifiées.',
-    evidence:'Le README privé documente les flux, les tests et la configuration Vercel. La disponibilité réelle du service et l’adoption externe n’ont pas été évaluées.',
+    evidence:'Le dépôt privé contient le parseur de flux, les tests et la configuration Netlify. Une version publique est déployée sur Netlify ; la fraîcheur des sources et l’adoption externe ne sont pas mesurées.',
     next:['Mesurer la disponibilité et la fraîcheur des sources.','Améliorer les messages d’échec de collecte.','Publier une courte vidéo de démonstration anonymisée.']
   },
   pokevalue:{
