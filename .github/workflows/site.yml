@@ -93,12 +93,18 @@ jobs:
             if curl --fail --silent --show-error --location --max-time 12 "$SITE/?verify=${{ github.sha }}" -o /tmp/portfolio-fr.html &&
                curl --fail --silent --show-error --location --max-time 12 "$SITE/en/?verify=${{ github.sha }}" -o /tmp/portfolio-en.html &&
                curl --fail --silent --show-error --location --max-time 12 "$SITE/experience/?verify=${{ github.sha }}" -o /tmp/portfolio-experience.html &&
-               grep -q 'Tech Lead Data' /tmp/portfolio-fr.html &&
-               grep -q 'Data & AI Tech Lead' /tmp/portfolio-en.html &&
+               grep -q 'Des plateformes data' /tmp/portfolio-fr.html &&
+               grep -q 'Data platforms' /tmp/portfolio-en.html &&
+               grep -q 'IoT Fireman' /tmp/portfolio-fr.html &&
+               grep -q 'CV Parser' /tmp/portfolio-en.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/projects/cv-parser-internship/" -o /tmp/portfolio-cv-fr.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/en/projects/cv-parser-internship/" -o /tmp/portfolio-cv-en.html &&
+               grep -q 'Projet de stage' /tmp/portfolio-cv-fr.html &&
+               grep -q 'Internship project' /tmp/portfolio-cv-en.html &&
                grep -q 'ENGIE' /tmp/portfolio-experience.html &&
                grep -q 'premium-surface' /tmp/portfolio-fr.html &&
-               grep -q '/logos/clients/natixis.svg' /tmp/portfolio-fr.html &&
-               grep -q '/logos/clients/edifixio.png' /tmp/portfolio-fr.html &&
+               grep -q '/logos/clients/natixis.svg' /tmp/portfolio-experience.html &&
+               grep -q '/logos/clients/edifixio.png' /tmp/portfolio-experience.html &&
                grep -q '/project-icons/dossierpro.png' /tmp/portfolio-fr.html &&
                grep -q '/project-icons/mission-radar.svg' /tmp/portfolio-fr.html &&
                curl --fail --silent --show-error --location --max-time 12 "$SITE/project-icons/dossierpro.png" -o /tmp/dossierpro-favicon.png &&
