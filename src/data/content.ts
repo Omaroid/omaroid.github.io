@@ -108,10 +108,10 @@ export const projects: Project[] = [
     motif: 'grid'
   },
   {
-    slug: 'bloom-terminal',
+    slug: 'lakehouse-signal',
     index: '05',
-    title: 'BLOOM Terminal',
-    short: 'A Databricks-first intelligence workspace for cloud and data research, with public feeds and project watchlists.',
+    title: 'Lakehouse Signal',
+    short: 'A Databricks-first cloud and data intelligence terminal for public updates, research and project watchlists.',
     eyebrow: 'Information systems / Research tooling',
     category: 'systems',
     categoryName: 'Systems',

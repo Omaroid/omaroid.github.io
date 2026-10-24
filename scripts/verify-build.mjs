@@ -9,7 +9,7 @@ const paths = [
   'projects/retail-churn-copilot/index.html',
   'projects/mission-radar/index.html',
   'projects/sa-os/index.html',
-  'projects/bloom-terminal/index.html',
+  'projects/lakehouse-signal/index.html',
   'projects/pokevalue/index.html'
 ];
 
@@ -35,7 +35,7 @@ const bilingualPaths = [
   'en/index.html', 'en/experience/index.html', 'en/roadmap/index.html',
   'en/projects/dossierpro/index.html', 'en/projects/retail-churn-copilot/index.html',
   'en/projects/mission-radar/index.html', 'en/projects/sa-os/index.html',
-  'en/projects/bloom-terminal/index.html', 'en/projects/pokevalue/index.html'
+  'en/projects/lakehouse-signal/index.html', 'en/projects/pokevalue/index.html'
 ];
 for (const path of bilingualPaths) {
   assert(existsSync(root + path), 'Missing English route: ' + path);
@@ -182,7 +182,7 @@ const projectIcons = {
   'mission-radar': 'svg',
   'pokevalue': 'svg',
   'sa-os': 'svg',
-  'bloom-terminal': 'svg'
+  'lakehouse-signal': 'png'
 };
 for (const [slug, extension] of Object.entries(projectIcons)) {
   const file = root + 'project-icons/' + slug + '.' + extension;
