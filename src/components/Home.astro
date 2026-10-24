@@ -2,6 +2,7 @@
 import Shell from '../layouts/Shell.astro';
 import TechLogo from './TechLogo.astro';
 import BrandLogo from './BrandLogo.astro';
+import ProjectIcon from './ProjectIcon.astro';
 import { projects, foundations, labs, categories } from '../data/content';
 import { getProjects } from '../data/projects.localized';
 import { career } from '../data/experience';
@@ -74,7 +75,7 @@ const localizedFoundations = foundations.map((project, i) => ({ ...project, ...f
               <div class="art-lines"><span></span><span></span><span></span><span></span></div>
               <span class="art-index">/{project.index}</span>
               <div class="project-visual-logo" aria-hidden="true">{project.stack.filter(tech => ['Databricks','React','Next.js','PostgreSQL','TypeScript','Vercel','Python','Spark','PySpark','Redis'].includes(tech)).slice(0,3).map(tech => <span class="project-visual-badge"><TechLogo name={tech} /></span>)}</div>
-              <span class="art-monogram">{project.title === 'Retail Churn Copilot' ? 'CHURN' : project.title === 'Mission Radar' ? 'RADAR' : project.title === 'BLOOM Terminal' ? 'BLOOM' : project.title === 'PokéValue' ? 'VISION' : project.title === 'SA-OS' ? 'SA/OS' : 'DOSSIER'}</span>
+              <ProjectIcon slug={project.slug} />
               <span class="art-corner"></span>
             </div>
             <div class="project-details">
