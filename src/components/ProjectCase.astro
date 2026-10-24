@@ -11,7 +11,7 @@ const project = getProject(lang,slug);
 if (!project) throw new Error('Unknown case study: ' + slug);
 const t = otherCopy[lang];
 const isPublic = project.repositoryVisibility === 'public' && !!project.repositoryUrl;
-const repositoryHref = project.repositoryUrl || `mailto:omarlaraqui59@gmail.com?subject=${encodeURIComponent((lang === 'fr' ? 'Demande d’accès au dépôt : ' : 'Repository access request: ') + project.title)}&body=${encodeURIComponent((lang === 'fr' ? 'Bonjour Omar,\n\nJe souhaiterais en savoir plus sur le dépôt ' : 'Hi Omar,\n\nI would like to learn more about the repository ') + project.title + '.\n')}`;
+const repositoryHref = isPublic ? project.repositoryUrl! : `mailto:omarlaraqui59@gmail.com?subject=${encodeURIComponent((lang === 'fr' ? 'Demande d’accès au dépôt : ' : 'Repository access request: ') + project.title)}&body=${encodeURIComponent((lang === 'fr' ? 'Bonjour Omar,\n\nJe souhaiterais en savoir plus sur le dépôt ' : 'Hi Omar,\n\nI would like to learn more about the repository ') + project.title + '.\n')}`;
 ---
 <Shell lang={lang} title={project.title + ' — ' + (lang === 'fr' ? 'Étude de cas | Omar Laraqui' : 'Engineering case study | Omar Laraqui')} description={project.short} pageType="article">
   <section class="inner-hero">
