@@ -69,7 +69,7 @@ const csp = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f6f7f5" />
+    <meta name="theme-color" content="#fbfaf6" />
     <meta http-equiv="Content-Security-Policy" content={csp} />
     <meta name="description" content={description} />
     <meta name="author" content="Omar Laraqui" />
@@ -97,14 +97,14 @@ const csp = [
       <header class="site-header">
         <div class="shell nav-row">
           <a class="wordmark" href={pathFor(lang,'/')} aria-label={'Omar Laraqui — ' + t.logo}>
-            <span class="wordmark-glyph" aria-hidden="true">O<span>∕</span>L</span>
+            <svg class="wordmark-glyph" viewBox="0 0 64 48" aria-hidden="true"><path d="M21 6a17 17 0 1 0 0 34 17 17 0 0 0 0-34Z"/><path d="M5 23h13l5-7 5 14 6-9h10"/><path d="M45 5v35h16"/></svg>
             <span class="wordmark-name">OMAR LARAQUI</span>
           </a>
           <nav class="desktop-nav" aria-label="Main navigation">
             <a href={pathFor(lang,'/') + '#work'}>{t.work}</a>
-            <a href={pathFor(lang,'/') + '#approach'}>{t.approach}</a>
+            <a href={pathFor(lang,'/') + '#about'}>{t.approach}</a>
             <a href={pathFor(lang,'/experience/')}>{t.experience}</a>
-            <a href={pathFor(lang,'/roadmap/')}>{t.labs}</a>
+            <a href="https://www.linkedin.com/in/omar-laraqui/" target="_blank" rel="noopener noreferrer">Contact</a>
           </nav>
           <div class="nav-right">
             <div class="language-toggle" aria-label="Language / Langue">
@@ -117,9 +117,9 @@ const csp = [
               <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
               <nav aria-label="Mobile navigation">
                 <a href={pathFor(lang,'/') + '#work'}>{t.work}</a>
-                <a href={pathFor(lang,'/') + '#approach'}>{t.approach}</a>
+                <a href={pathFor(lang,'/') + '#about'}>{t.approach}</a>
                 <a href={pathFor(lang,'/experience/')}>{t.experience}</a>
-                <a href={pathFor(lang,'/roadmap/')}>{t.labs}</a>
+                <a href="https://www.linkedin.com/in/omar-laraqui/" target="_blank" rel="noopener noreferrer">Contact</a>
                 <a href="https://github.com/Omaroid">GitHub ↗</a>
               </nav>
             </details>
@@ -130,13 +130,13 @@ const csp = [
       <footer class="site-footer">
         <div class="shell footer-inner">
           <div>
-            <a class="footer-brand" href={pathFor(lang,'/')}>Omar Laraqui<span class="accent">.</span></a>
+            <a class="footer-brand" href={pathFor(lang,'/')} aria-label="Omar Laraqui"><svg class="footer-glyph" viewBox="0 0 64 48" aria-hidden="true"><path d="M21 6a17 17 0 1 0 0 34 17 17 0 0 0 0-34Z"/><path d="M5 23h13l5-7 5 14 6-9h10"/><path d="M45 5v35h16"/></svg><span class="footer-brand-name">Omar Laraqui</span></a>
             <p>{lang === 'fr' ? 'Tech Lead Data & IA — Architecture, Cloud & produits IA.' : 'Data & AI Tech Lead — Architecture, Cloud & AI products.'}</p>
           </div>
           <div class="footer-links" aria-label="Footer links">
             <a href={pathFor(lang,'/') + '#work'}>{t.work}</a>
             <a href={pathFor(lang,'/experience/')}>{t.experience}</a>
-            <a href={pathFor(lang,'/roadmap/')}>{t.labs}</a>
+            <a href={pathFor(lang,'/') + '#about'}>{t.approach}</a>
             <a href="https://github.com/Omaroid" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
           <p class="footnote">© {new Date().getFullYear()} Omar Laraqui. {lang === 'fr' ? 'Site original et statique.' : 'Original static portfolio.'}</p>

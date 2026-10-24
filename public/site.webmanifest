@@ -3,8 +3,8 @@
   "short_name": "Omar Laraqui",
   "start_url": "/",
   "display": "minimal-ui",
-  "theme_color": "#10171b",
-  "background_color": "#10171b",
+  "theme_color": "#fbfaf6",
+  "background_color": "#fbfaf6",
   "icons": [
     {
       "src": "/favicon.svg",
