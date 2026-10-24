@@ -1,0 +1,17 @@
+---
+interface Props { slug: string; variant?: 'card' | 'detail' }
+const { slug, variant = 'card' } = Astro.props;
+const filenames: Record<string,string> = {
+  'dossierpro': 'dossierpro.png',
+  'retail-churn-copilot': 'retail-churn-copilot.png',
+  'mission-radar': 'mission-radar.svg',
+  'pokevalue': 'pokevalue.svg',
+  'sa-os': 'sa-os.svg',
+  'bloom-terminal': 'bloom-terminal.svg'
+};
+const file = filenames[slug];
+if (!file) throw new Error('Missing project favicon mapping: ' + slug);
+---
+<span class={'project-icon-image project-icon-' + variant} aria-hidden="true">
+  <img src={'/project-icons/' + file} alt="" width="112" height="112" decoding="async" loading="lazy" />
+</span>

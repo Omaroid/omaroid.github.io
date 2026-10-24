@@ -148,27 +148,50 @@ for (const logo of techLogos) {
 for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/experience/index.html']) {
   const html = readFileSync(root + file, 'utf8');
   assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
-  assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
+  assert(!/src="https?:\/\/(?!img\.anylogo\.dev\/)/i.test(html), 'Unexpected external image in ' + file);
 }
 
 
-// Premium visual redesign safeguards (all assets must remain local and static).
-const clientLogoIds = ['engie','groupe-alain-afflelou','iqera','axa','natixis','ingeniance','edifixio'];
-for (const id of clientLogoIds) {
-  const filename = root + 'logos/clients/' + id + '.svg';
-  assert(existsSync(filename), 'Missing client identity asset: ' + id);
-  const source = readFileSync(filename,'utf8');
-  assert(source.includes('<svg') && !/<script|onload\s*=|onerror\s*=|<foreignObject|javascript:|<(?:image|use)\b[^>]*(?:href|xlink:href)\s*=\s*[\"'](?:https?:|\/\/)/i.test(source), 'Unsafe client SVG: ' + id);
-}
+// Company logos come directly from the reviewed image CDN, rather than imitation artwork.
+const companyDomains = ['engie.com','afflelou.com','iqera.com','axa.com','natixis.com','ingeniance.fr','edifixio.com'];
 for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
-  assert(html.includes('/logos/clients/engie.svg'), 'ENGIE client mark missing from ' + file);
-  assert(html.includes('/logos/clients/axa.svg'), 'AXA client mark missing from ' + file);
-  assert(html.includes('premium-surface'), 'Premium design layer marker missing from ' + file);
+  assert(html.includes('premium-surface'), 'Premium design missing from ' + file);
+  assert(html.includes('img.anylogo.dev/engie.com'), 'ENGIE CDN logo missing from ' + file);
+  assert(html.includes('img.anylogo.dev/axa.com'), 'AXA CDN logo missing from ' + file);
+  assert(!html.includes('/logos/clients/'), 'Old fabricated company artwork remains in ' + file);
+  assert(html.includes('img-src') && html.includes('https://img.anylogo.dev'), 'CDN missing from restrictive CSP on ' + file);
+}
+for (const domain of companyDomains) {
+  assert(frenchHome.includes('img.anylogo.dev/' + domain), 'Company logo CDN source missing: ' + domain);
+  assert(englishHome.includes('img.anylogo.dev/' + domain), 'Company logo CDN source missing in English: ' + domain);
+}
+// Project favicons are copied from actual project repositories where available.
+const projectIcons = {
+  'dossierpro': 'png',
+  'retail-churn-copilot': 'png',
+  'mission-radar': 'svg',
+  'pokevalue': 'svg',
+  'sa-os': 'svg',
+  'bloom-terminal': 'svg'
+};
+for (const [slug, extension] of Object.entries(projectIcons)) {
+  const file = root + 'project-icons/' + slug + '.' + extension;
+  assert(existsSync(file), 'Missing bundled project favicon: ' + file);
+  const data = readFileSync(file);
+  if (extension === 'png') assert(data.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])), 'PNG signature mismatch: ' + slug);
+  else assert(data.toString('utf8').includes('<svg') && !/<script|onload\s*=|onerror\s*=|<foreignObject|javascript:/i.test(data.toString('utf8')), 'Unsafe project SVG: ' + slug);
+  assert(frenchHome.includes('/project-icons/' + slug + '.' + extension), 'Project favicon missing on French homepage: ' + slug);
+  assert(englishHome.includes('/project-icons/' + slug + '.' + extension), 'Project favicon missing on English homepage: ' + slug);
+  const detail = readFileSync(root + 'projects/' + slug + '/index.html', 'utf8');
+  assert(detail.includes('/project-icons/' + slug + '.' + extension), 'Project favicon missing from case study: ' + slug);
+}
+for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
+  assert(!/Forward Deployed|vers le FDE|toward FDE/i.test(readFileSync(root+file,'utf8')), 'Over-prominent career aspiration in ' + file);
 }
 for (const file of ['index.html','en/index.html']) {
   const html = readFileSync(root+file,'utf8');
-  assert(html.includes('project-visual-logo'), 'Project visual branding missing from ' + file);
+  assert(html.includes('project-icon-image'), 'Favicon-led project identity missing in ' + file);
   assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
 }
 

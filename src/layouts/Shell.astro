@@ -16,8 +16,8 @@ const {
     ? 'Omar Laraqui — Tech Lead Data & IA | Projets et expériences'
     : 'Omar Laraqui — Data & AI Tech Lead | Projects and experience',
   description = lang === 'fr'
-    ? 'Tech Lead Data & IA, expériences clients et projets Data, Cloud et IA. Un parcours en évolution vers le Forward Deployed Engineering.'
-    : 'Data & AI Tech Lead showcasing client experience and Data, Cloud and AI projects. Building toward Forward Deployed Engineering.',
+    ? 'Tech Lead Data & IA : projets, produits et expériences professionnelles autour des plateformes Data, du Cloud et de l’IA.'
+    : 'Data & AI Tech Lead showcasing real-world data platforms, cloud architecture, AI products and technical leadership.',
   pageType = 'website'
 } = Astro.props;
 
@@ -56,7 +56,7 @@ const csp = [
   "frame-src 'none'",
   "object-src 'none'",
   "connect-src 'none'",
-  "img-src 'self' data:",
+  "img-src 'self' data: https://img.anylogo.dev",
   "font-src 'self'",
   "style-src 'self'",
   "script-src 'self' 'sha256-" + structuredDataHash + "'",
@@ -131,7 +131,7 @@ const csp = [
         <div class="shell footer-inner">
           <div>
             <a class="footer-brand" href={pathFor(lang,'/')}>Omar Laraqui<span class="accent">.</span></a>
-            <p>{lang === 'fr' ? 'Tech Lead Data & IA — vers le Forward Deployed Engineering.' : 'Data & AI Tech Lead — building toward Forward Deployed Engineering.'}</p>
+            <p>{lang === 'fr' ? 'Tech Lead Data & IA — Architecture, Cloud & produits IA.' : 'Data & AI Tech Lead — Architecture, Cloud & AI products.'}</p>
           </div>
           <div class="footer-links" aria-label="Footer links">
             <a href={pathFor(lang,'/') + '#work'}>{t.work}</a>

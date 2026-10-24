@@ -850,3 +850,94 @@
     .approach-section .method-grid { border-radius: 16px; }
   }
 }
+
+
+/* Actual project favicons + remote corporate logo images (AnyLogo CDN).
+ * Logos are intentionally shown beside always-visible company names.
+ */
+@layer components {
+  .client-identity {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    min-width: 0;
+    padding: 7px 11px;
+    background: #fff;
+    border: 1px solid #e2eaf0;
+    border-radius: 13px;
+    color: #263c49;
+    line-height: 1.2;
+    box-shadow: 0 3px 12px rgba(20,44,56,.035);
+  }
+  .client-identity-small { width: 147px; min-height: 52px; height: auto; }
+  .client-identity-normal { width: 225px; height: 70px; }
+  .client-identity-logo {
+    flex: 0 0 auto;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+  .client-identity-normal .client-identity-logo { width: 46px; height: 46px; }
+  .client-identity-name {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font: 650 11px/1.23 var(--sans);
+    letter-spacing: -.012em;
+    color: #354956;
+  }
+  .client-identity-normal .client-identity-name { font-size: 13px; }
+  .preview-client-identity .client-identity-small { width: 186px; min-height: 49px; height: auto; }
+  .timeline-client-brand .client-identity-normal { width: 225px; height: 70px; }
+  .brand-strip-list { gap: 8px; }
+  .project-art { isolation: isolate; }
+  .project-icon-image {
+    position: relative;
+    z-index: 6;
+    display: grid;
+    place-items: center;
+    flex: none;
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(255,255,255,.89);
+    box-shadow: 0 22px 65px rgba(18,42,52,.23), inset 0 1px 0 #fff;
+  }
+  .project-icon-card { width: 130px; height: 130px; border-radius: 31px; }
+  .project-icon-card img { display: block; width: 92px; height: 92px; object-fit: contain; border-radius: 19px; }
+  .project-icon-detail {
+    width: 92px;
+    height: 92px;
+    border-radius: 22px;
+    box-shadow: 0 14px 30px rgba(26,55,72,.1);
+    border: 1px solid #e2e9ef;
+  }
+  .project-icon-detail img { display: block; width: 72px; height: 72px; object-fit: contain; border-radius: 12px; }
+  .case-project-heading { display: flex; align-items: center; gap: clamp(14px,2.4vw,30px); }
+  .case-project-heading h1 { min-width: 0; }
+  .project-card:hover .project-icon-card { box-shadow: 0 28px 65px rgba(17,42,57,.31); transform: translateY(-2px); }
+}
+@layer responsive {
+  @media (max-width: 1080px) {
+    .client-identity-small { width: 136px; }
+  }
+  @media (max-width: 730px) {
+    .client-identity-small { width: 132px; min-height: 48px; padding: 6px 8px; }
+    .client-identity-logo { width: 30px; height: 30px; }
+    .client-identity-name { font-size: 10px; }
+    .timeline-client-brand .client-identity-normal { width: 205px; height: 62px; }
+    .project-icon-card { width: 113px; height: 113px; border-radius: 25px; }
+    .project-icon-card img { width: 84px; height: 84px; }
+    .project-icon-detail { width: 67px; height: 67px; border-radius: 18px; }
+    .project-icon-detail img { width: 52px; height: 52px; }
+    .case-project-heading { gap: 12px; }
+  }
+  @media (max-width: 390px) {
+    .client-identity-small { width: 121px; }
+    .case-project-heading h1 { font-size: clamp(35px,10vw,54px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-card:hover .project-icon-card { transform: none; }
+  }
+}

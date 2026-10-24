@@ -1,35 +1,42 @@
-# Visual identity and artwork provenance
+# Portfolio logo and favicon provenance
 
-## Design direction
+## Positioning
 
-This portfolio uses a clean, original premium editorial design with generous whitespace, system typography, tactile cards, soft gradients, and purposeful contrast. It is **not an Apple template or an Apple-branded website**. Every visual component is implemented in the static Astro project, without a client-side framework, tracking code, remote font, or third-party CDN.
+The portfolio presents Omar Laraqui as a **Data & AI Tech Lead**. The six project pages describe their own user problems, architectures, implementation approaches and evidence. Forward Deployed Engineering is discussed only in the separate career roadmap; it is an aspiration, not a claimed current position or the purpose of every project.
 
-## Client and employer identity marks
+## Real project favicons served from this repository
 
-Seven static SVG **original typographic reference marks** appear in the same French and English site:
+The portfolio ships six favicon-sized project marks under `public/project-icons/`:
 
-- ENGIE
-- Groupe Alain Afflelou
-- iQera
-- AXA
-- Natixis
-- Ingeniance
-- Edifixio
+| Project | Origin | Asset served |
+| --- | --- | --- |
+| DossierPro | Existing original project favicon (`public/favicon-512x512.png`) | `dossierpro.png` |
+| Retail Churn Copilot | Existing original application favicon (`client/public/favicon-192x192.png`) | `retail-churn-copilot.png` |
+| Mission Radar | Existing original dashboard favicon (`public/favicon.svg`) | `mission-radar.svg` |
+| PokéValue | Existing original app favicon (`public/favicon.svg`) | `pokevalue.svg` |
+| SA-OS | No favicon was found in the project's repository | `sa-os.svg` — an original editorial fallback, **not** a source favicon |
+| BLOOM Terminal | No favicon was found in the project's repository | `bloom-terminal.svg` — an original editorial fallback, **not** a source favicon |
 
-The source files live under `public/logos/clients/`. They are original editorial nameplates designed for portfolio presentation, **not official corporate logos**. They should not be represented as client-approved branding, endorsements or official marketing assets. To replace a mark with a corporate logo later, obtain a reliable official source and verify trademark and redistribution conditions first.
+Only visual assets, **not private source code or secrets**, are included in the portfolio. The original PNG files are stored losslessly as checked-in Base64 under `src/assets/project-icons/`. GitHub's text-only connector required this representation. The zero-dependency `scripts/materialize-project-favicons.mjs` restores the exact PNG bytes before `astro build` and `astro dev`. All six project icons are self-hosted and accessible without a third-party dependency.
+
+## Client and employer logos: CDN delivery
+
+The site renders logo images from the free, keyless [AnyLogo CDN](https://anylogo.dev/docs/logos/) by **company website domain**:
+
+- ENGIE: `engie.com`
+- Groupe Alain Afflelou: `afflelou.com`
+- iQera: `iqera.com`
+- AXA: `axa.com`
+- Natixis: `natixis.com`
+- Ingeniance: `ingeniance.fr`
+- Edifixio: `edifixio.com`
+
+Each remote image uses `https://img.anylogo.dev/{domain}?size=128&fallback=monogram` and is accompanied by the real company name as plain HTML text so the identity remains understandable if image requests fail. Logo availability, brand choice, correctness and freshness depend on the CDN; a monogram fallback is possible. Employer references are not an endorsement claim. Old invented client-logo assets have been removed.
+
+**Privacy and availability trade-off:** Loading company images from a third-party CDN causes the visitor's browser to contact `img.anylogo.dev`, sharing an IP address with that image host. The image elements use `referrerpolicy="no-referrer"`. The site does not call the provider API in JavaScript and does not embed third-party scripts. A restrictive CSP allows precisely this logo image host in `img-src`; other external images, fonts, trackers and executable scripts remain blocked.
 
 ## Technology logos
 
-Under `public/logos/technology/`, the site includes locally bundled SVG marks selected from [Simple Icons](https://github.com/simple-icons/simple-icons) under [CC0 1.0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md).
+The existing 23 technology marks under `public/logos/technology/` are locally hosted SVG assets selected from [Simple Icons](https://github.com/simple-icons/simple-icons), distributed under [CC0 1.0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md). They identify technologies used in projects; their brand rights remain with their owners.
 
-The 23 bundled technology icons are: Databricks, Apache Spark, Python, TypeScript, Next.js, PostgreSQL, Redis, React, GitHub, Docker, Terraform, Apache Airflow, Vercel, Supabase, GitLab, Apache Hadoop, JavaScript, Node.js, Scala, MLflow, scikit-learn, Kubernetes, PyTorch.
-
-The logos identify referenced technologies. This does not imply partnership or endorsement, and applicable trademark rights remain with the owners.
-
-## Security and accessibility
-
-- The output contains static HTML/CSS/SVG, with only the pre-existing, tiny project-filter interaction.
-- Logos are served from the same HTTPS origin and do not create external browser requests.
-- SVGs are checked by CI for basic unsafe constructs; this is defense in depth, not a formal security certification.
-- Images have dimensions, lazy loading and alternative text, and the site supports reduced motion.
-- No client confidential information, brand assets from private applications, or personal CV files are committed.
+All project icon files and generated FR/EN pages are checked in CI. These tests are safety checks, not a security certification.

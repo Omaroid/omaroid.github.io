@@ -1,27 +1,33 @@
 ---
 interface Props { name: string; size?: 'normal' | 'small' }
 const { name, size = 'normal' } = Astro.props;
-const identities: Record<string, string> = {
-  'ENGIE': 'engie',
-  'Groupe Alain Afflelou': 'groupe-alain-afflelou',
-  'iQera': 'iqera',
-  'AXA': 'axa',
-  'Natixis': 'natixis',
-  'Ingeniance': 'ingeniance',
-  'Edifixio': 'edifixio'
+
+// Official corporate domains are used as lookup keys by AnyLogo's CDN.
+// The CDN may serve an icon, a wordmark or a monogram fallback; our text
+// label always remains readable independently of the remote image.
+const domains: Record<string, string> = {
+  'ENGIE': 'engie.com',
+  'Groupe Alain Afflelou': 'afflelou.com',
+  'iQera': 'iqera.com',
+  'AXA': 'axa.com',
+  'Natixis': 'natixis.com',
+  'Ingeniance': 'ingeniance.fr',
+  'Edifixio': 'edifixio.com'
 };
-const identity = identities[name];
+const domain = domains[name];
 ---
-{identity && (
+{domain && (
   <span class={'client-identity client-identity-' + size}>
     <img
       class="client-identity-logo"
-      src={'/logos/clients/' + identity + '.svg'}
-      width="278"
-      height="82"
-      alt={size === 'normal' ? '' : name}
+      src={'https://img.anylogo.dev/' + domain + '?size=128&fallback=monogram'}
+      width="44"
+      height="44"
+      alt=""
       loading="lazy"
       decoding="async"
+      referrerpolicy="no-referrer"
     />
+    <span class="client-identity-name">{name}</span>
   </span>
 )}

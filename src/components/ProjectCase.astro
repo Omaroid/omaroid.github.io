@@ -1,6 +1,7 @@
 ---
 import Shell from '../layouts/Shell.astro';
 import TechLogo from './TechLogo.astro';
+import ProjectIcon from './ProjectIcon.astro';
 import { otherCopy, pathFor, type Lang } from '../data/i18n';
 import { getProject } from '../data/projects.localized';
 
@@ -15,7 +16,7 @@ const t = otherCopy[lang];
     <div class="shell">
       <a class="back-link" href={pathFor(lang,'/')+'#work'}>← {t.back}</a>
       <p class="section-id">{project.index} <span aria-hidden="true">/</span> {project.eyebrow.toUpperCase()}</p>
-      <h1>{project.title}<span class="accent">.</span></h1>
+      <div class="case-project-heading"><ProjectIcon slug={project.slug} variant="detail" /><h1>{project.title}<span class="accent">.</span></h1></div>
       <p class="inner-lead">{project.short}</p>
       <div class="case-meta"><span>{project.status}</span><span>{t.case}</span><span>{t.sensitive}</span></div>
     </div>
