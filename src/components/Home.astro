@@ -9,13 +9,18 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const fr = lang === 'fr';
 const work = getProjects(lang);
+const featuredWork = work.filter(project => project.section !== 'archive');
+const archiveWork = work.filter(project => project.section === 'archive');
+const repoAction = (project: typeof work[number]) => project.repositoryVisibility === 'public' && project.repositoryUrl
+  ? { href: project.repositoryUrl, label: fr ? 'Voir le dépôt' : 'View repository', external: true }
+  : { href: `mailto:omarlaraqui59@gmail.com?subject=${encodeURIComponent((fr ? 'Demande d’accès au dépôt : ' : 'Repository access request: ') + project.title)}&body=${encodeURIComponent((fr ? 'Bonjour Omar,\n\nJe souhaiterais en savoir plus sur le dépôt ' : 'Hi Omar,\n\nI would like to learn more about the repository ') + project.title + '.\n')}`, label: fr ? 'Demander l’accès' : 'Request access', external: false };
 const summaryRoles = career.filter((role, i) => i === 0 || role.client !== career[i - 1]?.client).slice(0, 5);
 const copy = fr ? {
   eyebrow: 'SENIOR DATA ENGINEER & IA APPLIQUÉE', headlineA: 'Des plateformes data', headlineB: 'au service du réel.',
   lead: 'Je modernise les lakehouses gouvernés, les systèmes data de production et les usages IA, de la découverte à la livraison.',
   contact: 'Parlons de votre projet', work: 'Voir mes projets', location: 'Basé en France', years: '8+ ans', yearsSub: 'en ingénierie Data', core: 'Databricks, Spark', coreSub: 'Cloud & DataOps', ai: 'IA appliquée', aiSub: 'De l’idée à la production',
   selected: 'PROJETS SÉLECTIONNÉS', workTitle: 'Des solutions Data et IA, du cadrage à la réalisation.', workIntro: 'Une sélection de produits, d’outils et de systèmes. Chaque étude de cas distingue les capacités documentées des résultats qui restent à mesurer.',
-  view: 'Découvrir le projet', career: 'EXPÉRIENCE PROFESSIONNELLE', careerTitle: 'Un parcours construit sur le terrain.', careerIntro: 'Des environnements énergétiques, retail, financiers et assurantiels — avec une progression de l’ingénierie vers l’architecture et le leadership technique.',
+  view: 'Étude de cas', repository: 'Voir le dépôt', requestAccess: 'Demander l’accès', archiveTitle: 'IoT, projets data et premières réalisations', archiveIntro: 'Des projets académiques, des prototypes IoT et des expérimentations data documentés dans les dépôts. Les travaux historiques sont présentés dans leur contexte.', career: 'EXPÉRIENCE PROFESSIONNELLE', careerTitle: 'Un parcours construit sur le terrain.', careerIntro: 'Des environnements énergétiques, retail, financiers et assurantiels — avec une progression de l’ingénierie vers l’architecture et le leadership technique.',
   careerLink: 'Voir les missions et responsabilités', about: 'À PROPOS', aboutTitle: 'Le lien entre ingénierie data, IA et valeur métier.', aboutText: 'Je conçois et fais évoluer des plateformes de données fiables et des produits IA utiles. Mon approche associe exigence d’ingénierie, compréhension des utilisateurs et attention portée à la sécurité, à la gouvernance et aux coûts.',
   pillar1: 'Plateformes modernes', pillar1Text: 'Lakehouses gouvernés, pipelines fiables et données prêtes pour l’analytique.', pillar2: 'IA appliquée', pillar2Text: 'Des cas d’usage cadrés, intégrés aux systèmes et évalués avec discernement.', pillar3: 'Responsabilité technique', pillar3Text: 'Des choix expliqués, une qualité suivie et des systèmes maintenables.', pillar4: 'Travail collectif', pillar4Text: 'Une collaboration étroite avec les équipes métier, data et produit.',
   close: 'Faisons de vos données un levier concret.'
@@ -24,7 +29,7 @@ const copy = fr ? {
   lead: 'I modernize governed lakehouses, production data systems and applied AI use cases, from discovery through delivery.',
   contact: 'Let’s discuss your project', work: 'Explore my work', location: 'Based in France', years: '8+ years', yearsSub: 'in data engineering', core: 'Databricks, Spark', coreSub: 'Cloud & DataOps', ai: 'Applied AI', aiSub: 'From idea to production',
   selected: 'SELECTED WORK', workTitle: 'Practical data and AI solutions, from strategy to delivery.', workIntro: 'A selection of products, tools and systems. Each case study separates documented capabilities from outcomes that still need measurement.',
-  view: 'Explore project', career: 'PROFESSIONAL EXPERIENCE', careerTitle: 'A career shaped by hands-on delivery.', careerIntro: 'Across energy, retail, financial services and insurance — progressing from engineering into architecture and technical leadership.',
+  view: 'Case study', repository: 'View repository', requestAccess: 'Request access', archiveTitle: 'IoT, data projects and early work', archiveIntro: 'Academic projects, IoT prototypes and data explorations documented in their repositories. Historical work is presented in its original context.', career: 'PROFESSIONAL EXPERIENCE', careerTitle: 'A career shaped by hands-on delivery.', careerIntro: 'Across energy, retail, financial services and insurance — progressing from engineering into architecture and technical leadership.',
   careerLink: 'Explore engagements and responsibilities', about: 'ABOUT', aboutTitle: 'Connecting data engineering, AI and business value.', aboutText: 'I design and evolve reliable data platforms and useful AI products. My approach combines strong engineering, user understanding, and careful attention to security, governance and cost.',
   pillar1: 'Modern data platforms', pillar1Text: 'Governed lakehouses, reliable pipelines and analytics-ready data.', pillar2: 'Applied AI', pillar2Text: 'Well-scoped use cases integrated into systems and evaluated with care.', pillar3: 'Technical ownership', pillar3Text: 'Clear decisions, quality practices and maintainable systems.', pillar4: 'Collaborative delivery', pillar4Text: 'Close work with business, data and product teams.',
   close: 'Let’s turn your data into real-world impact.'
@@ -51,12 +56,19 @@ const copy = fr ? {
   <section class="editorial-work" id="work" aria-labelledby="work-title"><div class="shell">
     <div class="editorial-section-heading"><div><p class="editorial-kicker"><span></span>{copy.selected}</p><h2 id="work-title">{copy.workTitle}</h2></div><p>{copy.workIntro}</p></div>
     <div class="editorial-project-grid">
-      {work.map((project) => <a class="editorial-project" href={pathFor(lang, '/projects/' + project.slug + '/')} aria-label={(fr ? 'Découvrir ' : 'Explore ') + project.title}>
-        <div class="editorial-project-copy"><span class="project-eyebrow">{project.eyebrow}</span><h3>{project.title}</h3><p>{project.short}</p><div class="editorial-tags">{project.stack.slice(0,4).map(tech=><span>{tech}</span>)}</div><span class="editorial-project-link">{copy.view} <b aria-hidden="true">→</b></span></div>
+      {featuredWork.map((project) => { const action=repoAction(project); return <article class="editorial-project">
+        <div class="editorial-project-copy"><span class="project-eyebrow">{project.eyebrow}</span><h3>{project.title}</h3><p>{project.short}</p><div class="editorial-tags">{project.stack.slice(0,4).map(tech=><span>{tech}</span>)}</div><div class="editorial-project-actions"><a class="editorial-project-link" href={pathFor(lang, '/projects/' + project.slug + '/')}>{copy.view} <b aria-hidden="true">→</b></a><a class="repository-action" href={action.href} target={action.external ? '_blank' : undefined} rel={action.external ? 'noopener noreferrer' : undefined}>{action.label}{action.external ? ' ↗' : ' →'}</a>{project.demoUrl && <a class="repository-action demo-action" href={project.demoUrl} target="_blank" rel="noopener noreferrer">{fr ? 'Démo' : 'Demo'} ↗</a>}</div></div>
         <div class={'editorial-project-art art-' + project.motif}><ProjectIcon slug={project.slug} /><div class="editorial-art-lines" aria-hidden="true"></div></div>
-      </a>)}
+      </article>})}
     </div>
     <p class="editorial-disclosure">{fr ? 'Les descriptions reflètent la documentation disponible. Les déploiements, performances et résultats métier sont explicitement qualifiés sur chaque étude de cas.' : 'Descriptions reflect available documentation. Deployment, performance and business outcomes are qualified in each case study.'}</p>
+    <div class="editorial-archive-heading"><div><p class="editorial-kicker"><span></span>{fr ? 'AUTRES RÉALISATIONS' : 'ADDITIONAL WORK'}</p><h2>{copy.archiveTitle}</h2></div><p>{copy.archiveIntro}</p></div>
+    <div class="editorial-project-grid editorial-archive-grid">
+      {archiveWork.map((project) => { const action=repoAction(project); return <article class="editorial-project archive-project">
+        <div class="editorial-project-copy"><span class="project-eyebrow">{project.eyebrow}</span><h3>{project.title}</h3><p>{project.short}</p>{project.context && <small class="project-context">{project.context}</small>}<div class="editorial-tags">{project.stack.slice(0,4).map(tech=><span>{tech}</span>)}</div><div class="editorial-project-actions"><a class="editorial-project-link" href={pathFor(lang, '/projects/' + project.slug + '/')}>{copy.view} <b aria-hidden="true">→</b></a><a class="repository-action" href={action.href} target={action.external ? '_blank' : undefined} rel={action.external ? 'noopener noreferrer' : undefined}>{action.label}{action.external ? ' ↗' : ' →'}</a></div></div>
+        <div class={'editorial-project-art art-' + project.motif}><ProjectIcon slug={project.slug} /><div class="editorial-art-lines" aria-hidden="true"></div></div>
+      </article>})}
+    </div>
   </div></section>
 
   <section class="editorial-career" id="experience"><div class="shell">

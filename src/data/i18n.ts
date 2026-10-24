@@ -21,7 +21,7 @@ export const homeText = {
     tagDiscovery:'Comprendre le besoin', tagEngineering:'Intégrer et fiabiliser', tagDelivery:'Délivrer et apprendre',
     visualProblem:'PROBLÈME', visualProduct:'SOLUTION', scroll:'DÉCOUVRIR', mantra:'LA PREUVE AVANT LES PROMESSES',
     workId:'01 / PROJETS SÉLECTIONNÉS', workTitle1:'Des réalisations',workTitle2:'pas seulement du code',
-    workIntro:'Six projets autour de la Data, de l’IA et de l’intégration. Les dépôts applicatifs restent privés, les arbitrages techniques sont présentés publiquement.',
+    workIntro:'Projets et études de cas autour de la Data, de l’IA et des intégrations. Chaque dépôt indique clairement s’il est public ou accessible sur demande.',
     count:'PROJETS', private:'ÉTUDE DE CAS / CODE PRIVÉ', view:'VOIR LE PROJET',
     disclosure:'Ces études de cas s’appuient sur la documentation des dépôts. Elles ne constituent pas une preuve d’adoption en production ni de résultats métier mesurés.',
     approachId:'02 / MA DÉMARCHE', approachTitle1:'Du besoin flou', approachTitle2:'au système fiable',
@@ -51,7 +51,7 @@ export const homeText = {
     tagDiscovery:'Real user needs',tagEngineering:'Reliable integration',tagDelivery:'Useful delivery',
     visualProblem:'PROBLEM',visualProduct:'PRODUCT',scroll:'SCROLL TO EXPLORE',mantra:'EVIDENCE BEFORE HYPE',
     workId:'01 / SELECTED PROJECTS',workTitle1:'Proof of work',workTitle2:'not just code',
-    workIntro:'Six projects across data engineering, AI and integrations. Product source repositories remain private; architectural decisions are discussed publicly.',
+    workIntro:'Projects and case studies across data engineering, AI and integrations. Each repository is clearly marked as public or available by request.',
     count:'PROJECTS',private:'CASE STUDY / PRIVATE CODE',view:'VIEW PROJECT',
     disclosure:'These case studies are grounded in repository documentation; they do not independently verify production adoption or measured business impact.',
     approachId:'02 / MY APPROACH',approachTitle1:'From messy brief',approachTitle2:'to reliable system',
@@ -125,14 +125,24 @@ export const categoryLabels: Record<Lang,Record<string,string>> = {
 
 export const foundationTranslations: Record<Lang,{title:string;summary:string}[]> = {
  fr:[
-  {title:'API de données COVID-19',summary:'Collecte de données publiques et API Python — projet historique archivé.'},
-  {title:'Visualisation des inégalités',summary:'Visualisations interactives en D3.js et narration par la donnée.'},
-  {title:'Prévision du prix du Brent',summary:'Exploration de prévisions de séries temporelles sur les cours historiques du Brent ; la précision du modèle n’a pas été évaluée de façon indépendante.'}
+  {title:'PB Farmer',summary:'Prototype de ferme connectée combinant Raspberry Pi, Arduino et Azure.'},
+  {title:'IoT Fireman',summary:'Prototype IoT de supervision de détection incendie avec application Android.'},
+  {title:'Parsing de CV — stage 2020',summary:'Projet de stage chez Ingeniance autour de la préparation de CV et de la reconnaissance d’entités nommées.'},
+  {title:'API de données COVID-19',summary:'Collecte de données publiques et API Flask — projet historique archivé.'},
+  {title:'Visualisation des inégalités',summary:'Indicateurs du World Inequality Database explorés au moyen de visualisations D3.js.'},
+  {title:'Prévision du prix du Brent',summary:'Exploration avec Prophet sur des cours historiques ; aucune précision n’est revendiquée.'},
+  {title:'Classifieur d’e-mails Naive Bayes',summary:'Prototype pédagogique de classification spam/courrier légitime réalisé en 2019.'},
+  {title:'Salesforce Documents Retriever',summary:'Petit utilitaire Node.js de récupération de documents Salesforce vers un dossier local.'}
  ],
  en:[
-  {title:'COVID-19 Data API',summary:'Public data ingestion and Python API — historical archived project.'},
-  {title:'World Inequality Visuals',summary:'Interactive D3.js analytics and data storytelling.'},
-  {title:'Brent Oil Price Forecast',summary:'Time-series forecasting exploration on historical Brent prices; model accuracy is not independently benchmarked.'}
+  {title:'PB Farmer',summary:'Connected-farm prototype combining Raspberry Pi, Arduino and Azure.'},
+  {title:'IoT Fireman',summary:'IoT fire-detection monitoring prototype with an Android application.'},
+  {title:'CV Parser — 2020 internship',summary:'Ingeniance internship project exploring resume preparation and named-entity recognition.'},
+  {title:'COVID-19 Data API',summary:'Public data ingestion and Flask API — historical archived project.'},
+  {title:'World Inequality Visuals',summary:'World Inequality Database indicators explored through D3.js visualizations.'},
+  {title:'Brent Oil Price Forecast',summary:'Prophet exploration on historical prices; no accuracy claim is made.'},
+  {title:'Naive Bayes Email Classifier',summary:'2019 learning prototype for spam and legitimate-email classification.'},
+  {title:'Salesforce Documents Retriever',summary:'Small Node.js utility that retrieves Salesforce documents into a local folder.'}
  ]
 };
 

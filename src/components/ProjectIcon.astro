@@ -10,8 +10,8 @@ const filenames: Record<string,string> = {
   'lakehouse-signal': 'lakehouse-signal.png'
 };
 const file = filenames[slug];
-if (!file) throw new Error('Missing project favicon mapping: ' + slug);
+const letter = slug.split('-').map(part => part[0]?.toUpperCase()).join('').slice(0, 2);
 ---
 <span class={'project-icon-image project-icon-' + variant} aria-hidden="true">
-  <img src={'/project-icons/' + file} alt="" width="112" height="112" decoding="async" loading="lazy" />
+  {file ? <img src={'/project-icons/' + file} alt="" width="112" height="112" decoding="async" loading="lazy" /> : <span class="project-icon-letter">{letter}</span>}
 </span>

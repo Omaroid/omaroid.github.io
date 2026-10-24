@@ -10,7 +10,11 @@ const paths = [
   'projects/mission-radar/index.html',
   'projects/sa-os/index.html',
   'projects/lakehouse-signal/index.html',
-  'projects/pokevalue/index.html'
+  'projects/pokevalue/index.html',
+  'projects/pb-farmer/index.html', 'projects/iot-fireman/index.html',
+  'projects/cv-parser-internship/index.html', 'projects/covid-19-data-api/index.html',
+  'projects/world-inequality-visuals/index.html', 'projects/brent-oil-forecast/index.html',
+  'projects/email-classifier/index.html', 'projects/salesforce-documents-retriever/index.html'
 ];
 
 for (const path of paths) {
@@ -22,9 +26,10 @@ for (const path of paths) {
 }
 
 const home = readFileSync(root + 'index.html', 'utf8');
-assert(home.includes('Des plateformes data') && home.includes('au service du réel.'), 'French hero not generated');
-assert(home.match(/class="editorial-project"/g)?.length === 6, 'Exactly six flagship projects expected');
-assert(home.includes('brand-mark-large'), 'Portfolio identity illustration missing');
+assert(home.includes('La data complexe.') && home.includes('Des solutions utiles'), 'French hero not generated');
+assert(home.match(/class="editorial-project(?: archive-project)?"/g)?.length === 14, 'All 14 documented project cards expected');
+assert(home.includes('PB Farmer') && home.includes('IoT Fireman'), 'IoT projects are missing from the portfolio');
+assert(home.includes('Demander l’accès') && home.includes('Voir le dépôt'), 'Repository access actions are missing');
 assert(!home.includes('NEXTAUTH_SECRET') && !home.includes('OPENAI_API_KEY'), 'Sensitive variable label in generated output');
 
 const sitemap = readFileSync(root + 'sitemap.xml', 'utf8');
@@ -35,7 +40,11 @@ const bilingualPaths = [
   'en/index.html', 'en/experience/index.html', 'en/roadmap/index.html',
   'en/projects/dossierpro/index.html', 'en/projects/retail-churn-copilot/index.html',
   'en/projects/mission-radar/index.html', 'en/projects/sa-os/index.html',
-  'en/projects/lakehouse-signal/index.html', 'en/projects/pokevalue/index.html'
+  'en/projects/lakehouse-signal/index.html', 'en/projects/pokevalue/index.html',
+  'en/projects/pb-farmer/index.html', 'en/projects/iot-fireman/index.html',
+  'en/projects/cv-parser-internship/index.html', 'en/projects/covid-19-data-api/index.html',
+  'en/projects/world-inequality-visuals/index.html', 'en/projects/brent-oil-forecast/index.html',
+  'en/projects/email-classifier/index.html', 'en/projects/salesforce-documents-retriever/index.html'
 ];
 for (const path of bilingualPaths) {
   assert(existsSync(root + path), 'Missing English route: ' + path);
@@ -71,6 +80,15 @@ assert(frenchCase.includes('recrutement') && frenchCase.includes('Étude de cas'
 assert(englishCase.includes('recruitment') && englishCase.includes('Engineering case study'), 'English case-study text missing');
 assert(frenchCase.includes('href="/en/projects/dossierpro/"'), 'Case-study language toggle must retain slug');
 assert(englishCase.includes('href="/projects/dossierpro/"'), 'English case-study toggle must retain slug');
+const frenchCv = readFileSync(root + 'projects/cv-parser-internship/index.html', 'utf8');
+const englishCv = readFileSync(root + 'en/projects/cv-parser-internship/index.html', 'utf8');
+assert(frenchCv.includes('Projet de stage') && frenchCv.includes('février–août 2020'), 'CV parsing internship context missing in French');
+assert(englishCv.includes('Internship project') && englishCv.includes('February–August 2020'), 'CV parsing internship context missing in English');
+assert(frenchCv.includes('mailto:omarlaraqui59@gmail.com'), 'Private repository access email missing');
+const frenchFarmer = readFileSync(root + 'projects/pb-farmer/index.html', 'utf8');
+const englishFarmer = readFileSync(root + 'en/projects/pb-farmer/index.html', 'utf8');
+assert(frenchFarmer.includes('Raspberry Pi') && frenchFarmer.includes('Voir le dépôt public'), 'French PB Farmer README content or public link missing');
+assert(englishFarmer.includes('Azure') && englishFarmer.includes('View public repository'), 'English PB Farmer README content or public link missing');
 assert((frenchExperience.match(/class="timeline-client(?: visually-hidden)?">AXA/g) || []).length === 2, 'Preserve AXA Tech Lead and Cloud Engineer as separate roles');
 assert(existsSync(root + 'en/404/index.html') || existsSync(root + 'en/404.html'), 'English not-found route missing');
 
@@ -145,7 +163,7 @@ for (const logo of techLogos) {
   const svg = readFileSync(file, 'utf8');
   assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe SVG asset: ' + logo);
 }
-for (const file of ['experience/index.html', 'en/experience/index.html']) {
+for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/experience/index.html']) {
   const html = readFileSync(root + file, 'utf8');
   assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
   assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
@@ -162,7 +180,7 @@ for (const logo of clientLogos) {
     assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe client SVG: ' + logo);
   }
 }
-for (const file of ['experience/index.html','en/experience/index.html']) {
+for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('premium-surface'), 'Premium design missing from ' + file);
   assert(html.includes('/logos/clients/engie.png'), 'ENGIE logo missing from ' + file);
@@ -172,8 +190,8 @@ for (const file of ['experience/index.html','en/experience/index.html']) {
   assert(html.includes("img-src &#39;self&#39; data:") || html.includes("img-src 'self' data:"), 'Self-hosted image policy missing from ' + file);
 }
 for (const logo of clientLogos) {
-  assert(frenchExperience.includes('/logos/clients/' + logo), 'Company logo missing from French experience page: ' + logo);
-  assert(englishExperience.includes('/logos/clients/' + logo), 'Company logo missing from English experience page: ' + logo);
+  assert(frenchHome.includes('/logos/clients/' + logo), 'Company logo missing from French homepage: ' + logo);
+  assert(englishHome.includes('/logos/clients/' + logo), 'Company logo missing from English homepage: ' + logo);
 }
 // Project favicons are copied from actual project repositories where available.
 const projectIcons = {
@@ -201,7 +219,7 @@ for (const file of ['index.html','en/index.html','experience/index.html','en/exp
 for (const file of ['index.html','en/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('project-icon-image'), 'Favicon-led project identity missing in ' + file);
-  assert(html.includes('brand-mark-large'), 'Portfolio identity illustration missing from ' + file);
+  assert(html.includes('brand-strip-list'), 'Client showcase missing from ' + file);
 }
 
-console.log('Bilingual static build verified: ' + paths.length + ' core files and 6 case studies.');
+console.log('Bilingual static build verified: ' + paths.length + ' core files and 14 case studies.');
