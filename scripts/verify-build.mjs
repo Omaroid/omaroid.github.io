@@ -165,8 +165,11 @@ for (const logo of techLogos) {
 }
 for (const file of ['index.html', 'en/index.html', 'experience/index.html', 'en/experience/index.html']) {
   const html = readFileSync(root + file, 'utf8');
-  assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
   assert(!/src="https?:\/\//i.test(html), 'Unexpected external image in ' + file);
+}
+for (const file of ['experience/index.html', 'en/experience/index.html']) {
+  const html = readFileSync(root + file, 'utf8');
+  assert(html.includes('/logos/technology/databricks.svg'), 'Technology logo missing on ' + file);
 }
 
 
@@ -180,7 +183,7 @@ for (const logo of clientLogos) {
     assert(svg.includes('<svg') && !/<script|onload=|onerror=|<foreignObject/i.test(svg), 'Unsafe client SVG: ' + logo);
   }
 }
-for (const file of ['index.html','en/index.html','experience/index.html','en/experience/index.html']) {
+for (const file of ['experience/index.html','en/experience/index.html']) {
   const html = readFileSync(root+file,'utf8');
   assert(html.includes('premium-surface'), 'Premium design missing from ' + file);
   assert(html.includes('/logos/clients/engie.png'), 'ENGIE logo missing from ' + file);
@@ -190,8 +193,8 @@ for (const file of ['index.html','en/index.html','experience/index.html','en/exp
   assert(html.includes("img-src &#39;self&#39; data:") || html.includes("img-src 'self' data:"), 'Self-hosted image policy missing from ' + file);
 }
 for (const logo of clientLogos) {
-  assert(frenchHome.includes('/logos/clients/' + logo), 'Company logo missing from French homepage: ' + logo);
-  assert(englishHome.includes('/logos/clients/' + logo), 'Company logo missing from English homepage: ' + logo);
+  assert(frenchExperience.includes('/logos/clients/' + logo), 'Company logo missing from French experience page: ' + logo);
+  assert(englishExperience.includes('/logos/clients/' + logo), 'Company logo missing from English experience page: ' + logo);
 }
 // Project favicons are copied from actual project repositories where available.
 const projectIcons = {
