@@ -24,8 +24,35 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'retail-churn-copilot',
+    slug: 'hands-on-rag-lab',
     index: '01',
+    title: 'Hands-on RAG Lab',
+    short: 'An interactive bilingual RAG lab that makes PDF indexing, hybrid retrieval and source-grounded generation inspectable.',
+    eyebrow: 'Applied AI / Retrieval-augmented generation',
+    category: 'ai',
+    categoryName: 'AI products',
+    status: 'Public source · Live demo',
+    section: 'featured',
+    repositoryVisibility: 'public',
+    repositoryUrl: 'https://github.com/Omaroid/hands-on-rag-lab',
+    demoUrl: 'https://hands-on-rag-lab.vercel.app',
+    stack: ['Multilingual E5', 'BM25', 'RRF', 'NVIDIA GPT-OSS 20B', 'Transformers.js', 'ONNX Runtime', 'PDF.js', 'Tesseract OCR', 'Vercel'],
+    problem: 'A generated answer can hide how documents were read, which passages were retrieved and why those passages were selected. Learners need a working RAG pipeline whose intermediate evidence and limits can be inspected.',
+    approach: [
+      'Extract PDF text with PDF.js, use Tesseract for scanned pages, and preserve file and page provenance when creating passages.',
+      'Run multilingual-e5-small locally with Transformers.js and ONNX Runtime: 384-dimensional embeddings, mean pooling and L2 normalization. Keep PDF contents and vectors in browser-session memory.',
+      'Combine semantic cosine similarity and BM25 lexical retrieval with Reciprocal Rank Fusion (k = 60). Expose scores, ranking and the context budget through an interactive learning journey.',
+      'After explicit consent, send only the question and selected passages through a validating server API to NVIDIA GPT-OSS 20B. Check returned references against the supplied context.',
+      'Explain the pipeline in French and English through theory and architecture pages, including the calculations from the latest search.'
+    ],
+    decision: 'Make retrieval and its trust boundaries visible: index locally, combine complementary search methods, and keep generation separate and optional. A citation supports inspection; it does not guarantee a correct interpretation.',
+    evidence: 'The public repository and Vercel demo are available. GitHub Actions passed 24 browser cases and 14 Node API tests; PDF/OCR/E5 tests run real processing, while generation UI tests use simulated responses. The full Git-history secret scan found no unexplained credential findings. These checks do not establish retrieval accuracy or answer faithfulness on a labeled benchmark.',
+    next: ['Build a labeled question-and-document evaluation set and measure retrieval recall@k.', 'Evaluate citation faithfulness, unsupported answers and ambiguous questions.', 'Measure latency and provider usage across representative documents without presenting CI pass counts as model-quality metrics.'],
+    motif: 'nodes'
+  },
+  {
+    slug: 'retail-churn-copilot',
+    index: '02',
     title: 'Retail Churn Copilot',
     short: 'A conversational analytics application on top of a Databricks-native data platform.',
     eyebrow: 'Data platform / AI analytics',
@@ -49,7 +76,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'dossierpro',
-    index: '02',
+    index: '03',
     title: 'DossierPro',
     short: 'A recruitment operations platform for turning CVs and candidate information into structured, traceable workflows.',
     eyebrow: 'Product engineering / Applied AI',
@@ -73,7 +100,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'mission-radar',
-    index: '03',
+    index: '04',
     title: 'Mission Radar',
     short: 'A private opportunity research cockpit that connects a Notion-backed mission tracker, contact context and follow-up workflows.',
     eyebrow: 'Integrations / Full-stack systems',
@@ -97,7 +124,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'sa-os',
-    index: '04',
+    index: '05',
     title: 'SA-OS',
     short: 'A Databricks Solutions Architect methodology system for discovery, architecture, experiments and reusable field evidence.',
     eyebrow: 'Field engineering / Technical methodology',
@@ -121,7 +148,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'lakehouse-signal',
-    index: '05',
+    index: '06',
     title: 'Lakehouse Signal',
     short: 'A Databricks-first cloud and data intelligence terminal for public updates, research, watchlists and reading workflows.',
     eyebrow: 'Information systems / Research tooling',
@@ -146,7 +173,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'pokevalue',
-    index: '06',
+    index: '07',
     title: 'PokéValue',
     short: 'A mobile-first vision and market-data application, from image to useful portfolio action.',
     eyebrow: 'Computer vision / Consumer product',
@@ -169,7 +196,7 @@ export const projects: Project[] = [
     motif: 'scan'
   },
   {
-    slug: 'pb-farmer', index: '07', title: 'PB Farmer', short: 'A connected, scalable farm prototype combining sensing, embedded systems and cloud data.',
+    slug: 'pb-farmer', index: '08', title: 'PB Farmer', short: 'A connected, scalable farm prototype combining sensing, embedded systems and cloud data.',
     eyebrow: 'IoT / Agriculture / Cloud', category: 'systems', categoryName: 'IoT & data systems', status: 'Public repository · Academic project', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/pilbifarmer', context: 'Ensimag project, 2018–2019.',
     stack: ['Raspberry Pi', 'Arduino', 'Azure', 'Sensors', 'Embedded systems'],
     problem: 'Explore how connected devices and cloud services can support a scalable, data-informed farming setup.',
@@ -179,7 +206,7 @@ export const projects: Project[] = [
     next: ['Review the original project wiki for implementation details.', 'Reproduce the device-to-cloud flow with current hardware.', 'Document data quality and reliability constraints.'], motif: 'nodes'
   },
   {
-    slug: 'iot-fireman', index: '08', title: 'IoT Fireman', short: 'A connected fire-detection monitoring concept with an Android application.',
+    slug: 'iot-fireman', index: '09', title: 'IoT Fireman', short: 'A connected fire-detection monitoring concept with an Android application.',
     eyebrow: 'IoT / Mobile / Monitoring', category: 'systems', categoryName: 'IoT & data systems', status: 'Public repository · Prototype', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/IOT-Fireman',
     stack: ['IoT', 'Android', 'Java', 'Fire detection', 'Mobile application'],
     problem: 'Provide a way to monitor a home fire-detection system through a connected application.',
@@ -189,7 +216,7 @@ export const projects: Project[] = [
     next: ['Document the full sensor and communications architecture.', 'Clarify alert delivery and failure behavior.', 'Validate the concept with appropriate safety standards before any real-world use.'], motif: 'wave'
   },
   {
-    slug: 'cv-parser-internship', index: '09', title: 'CV Parser', short: 'An internship project exploring resume parsing, data preparation and named-entity recognition.',
+    slug: 'cv-parser-internship', index: '10', title: 'CV Parser', short: 'An internship project exploring resume parsing, data preparation and named-entity recognition.',
     eyebrow: 'NLP / Data preparation / Internship', category: 'ai', categoryName: 'AI & data', status: 'Private repository · Internship project', repositoryVisibility: 'private', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/resumeParser', context: 'Ingeniance internship · February–August 2020.',
     stack: ['Python', 'NLP', 'Named-entity recognition', 'Data preparation', 'Resume parsing'],
     problem: 'Explore how unstructured resumes can be prepared and parsed into structured candidate information.',
@@ -199,7 +226,7 @@ export const projects: Project[] = [
     next: ['Keep source CV data private and out of public examples.', 'Reproduce the preprocessing with synthetic or consented records.', 'Document evaluation methodology before reporting metrics.'], motif: 'orbit'
   },
   {
-    slug: 'covid-19-data-api', index: '10', title: 'COVID-19 Data API', short: 'A historical Flask API that ingested public pandemic data and exposed it through endpoints.',
+    slug: 'covid-19-data-api', index: '11', title: 'COVID-19 Data API', short: 'A historical Flask API that ingested public pandemic data and exposed it through endpoints.',
     eyebrow: 'Data engineering / Python API', category: 'data', categoryName: 'Data engineering', status: 'Public repository · Archived', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/Covid-19-API', context: 'Historical project · 2020.',
     stack: ['Python', 'Flask', 'REST API', 'Scheduled ingestion', 'JHU CSSE'],
     problem: 'Make frequently updated public COVID-19 statistics accessible through a simple API.',
@@ -209,7 +236,7 @@ export const projects: Project[] = [
     next: ['Point users to current authoritative public-health sources.', 'Add source timestamps and data freshness indicators if revived.', 'Review historical API behavior before reuse.'], motif: 'grid'
   },
   {
-    slug: 'world-inequality-visuals', index: '11', title: 'World Inequality Visuals', short: 'An interactive exploration of income inequality data using D3.js.',
+    slug: 'world-inequality-visuals', index: '12', title: 'World Inequality Visuals', short: 'An interactive exploration of income inequality data using D3.js.',
     eyebrow: 'Data visualization / Research', category: 'data', categoryName: 'Data visualization', status: 'Public repository · Academic project', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/InfoVisWorldInequality',
     stack: ['World Inequality Database', 'Data preparation', 'D3.js', 'Interactive charts'],
     problem: 'Make complex inequality indicators easier to explore and compare across countries and time.',
@@ -219,7 +246,7 @@ export const projects: Project[] = [
     next: ['Add source notes and methodological caveats alongside each measure.', 'Check comparability across countries and years.', 'Modernize the visualizations and accessibility.'], motif: 'scan'
   },
   {
-    slug: 'brent-oil-forecast', index: '12', title: 'Brent Oil Price Forecast', short: 'A time-series forecasting exploration using historical Brent prices and Prophet.',
+    slug: 'brent-oil-forecast', index: '13', title: 'Brent Oil Price Forecast', short: 'A time-series forecasting exploration using historical Brent prices and Prophet.',
     eyebrow: 'Time series / Forecasting', category: 'data', categoryName: 'Data science', status: 'Public repository · Historical notebook', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/BlentOilPriceForcastProphet',
     stack: ['Python', 'Prophet', 'Time series', 'Jupyter', 'Kaggle dataset'],
     problem: 'Explore a forecasting workflow for historical Brent crude oil prices.',
@@ -229,7 +256,7 @@ export const projects: Project[] = [
     next: ['Compare against seasonal-naive and other baseline forecasts.', 'Use time-based backtesting and report error ranges.', 'Document data provenance and forecast uncertainty.'], motif: 'wave'
   },
   {
-    slug: 'email-classifier', index: '13', title: 'Naive Bayes Email Classifier', short: 'A 2019 learning prototype for classifying email text as ham or spam.',
+    slug: 'email-classifier', index: '14', title: 'Naive Bayes Email Classifier', short: 'A 2019 learning prototype for classifying email text as ham or spam.',
     eyebrow: 'Machine learning / Text classification', category: 'ai', categoryName: 'Machine learning', status: 'Public repository · Legacy prototype', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/NaiveBayesPythonEmailClassifier', context: 'Historical learning project · 2019.',
     stack: ['Python', 'scikit-learn', 'CountVectorizer', 'Multinomial Naive Bayes', 'Tkinter'],
     problem: 'Explore a basic text-classification workflow for distinguishing spam from legitimate email.',
@@ -239,7 +266,7 @@ export const projects: Project[] = [
     next: ['Add a reproducible train/test split and evaluation metrics.', 'Review privacy and dataset provenance before reuse.', 'Update dependencies if the prototype is revived.'], motif: 'orbit'
   },
   {
-    slug: 'salesforce-documents-retriever', index: '14', title: 'Salesforce Documents Retriever', short: 'A small Node.js utility to retrieve documents from a Salesforce organization to a local folder.',
+    slug: 'salesforce-documents-retriever', index: '15', title: 'Salesforce Documents Retriever', short: 'A small Node.js utility to retrieve documents from a Salesforce organization to a local folder.',
     eyebrow: 'Data integration / Developer tooling', category: 'systems', categoryName: 'Integrations', status: 'Public repository · Utility', repositoryVisibility: 'public', section: 'archive', repositoryUrl: 'https://github.com/Omaroid/Salesforce-Documents-Retriever',
     stack: ['Node.js', 'Salesforce', 'API integration', 'File retrieval'],
     problem: 'Make document retrieval from a Salesforce organization available as a repeatable local utility.',

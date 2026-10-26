@@ -2,6 +2,23 @@ import { projects, type Project } from './content';
 import type { Lang } from './i18n';
 
 const fr: Record<string, Partial<Project>> = {
+  'hands-on-rag-lab': {
+    short: 'Un laboratoire RAG interactif et bilingue pour comprendre l’indexation de PDF, la recherche hybride et la génération fondée sur des sources.',
+    eyebrow: 'IA appliquée / Retrieval-Augmented Generation',
+    categoryName: 'Produits IA',
+    status: 'Code public · Démo en ligne',
+    problem: 'Une réponse générée peut masquer la lecture des documents, les passages retrouvés et les raisons de leur sélection. Pour comprendre le RAG, il faut pouvoir inspecter les étapes intermédiaires, les preuves et leurs limites.',
+    approach: [
+      'Extraire le texte avec PDF.js, utiliser Tesseract pour les pages scannées et conserver le fichier et la page d’origine lors du découpage en passages.',
+      'Exécuter multilingual-e5-small localement avec Transformers.js et ONNX Runtime : vecteurs de 384 dimensions, pooling moyen et normalisation L2. Les PDF et les vecteurs restent en mémoire de session dans le navigateur.',
+      'Combiner la similarité cosinus et la recherche lexicale BM25 avec Reciprocal Rank Fusion (k = 60). Rendre les scores, les classements et le budget de contexte consultables dans un parcours interactif.',
+      'Après consentement explicite, transmettre uniquement la question et les passages sélectionnés à NVIDIA GPT-OSS 20B via une API serveur qui valide les entrées. Contrôler les références retournées à partir du contexte fourni.',
+      'Expliquer la chaîne en français et en anglais dans des pages de théorie et d’architecture, avec les calculs de la dernière recherche.'
+    ],
+    decision: 'Rendre la recherche et les frontières de confiance visibles : indexation locale, méthodes de recherche complémentaires et génération séparée, facultative. Une citation permet de vérifier un passage ; elle ne garantit pas la justesse de son interprétation.',
+    evidence: 'Le dépôt public et la démo Vercel sont disponibles. GitHub Actions a validé 24 cas navigateur et 14 tests API Node ; les tests PDF/OCR/E5 exécutent les traitements réels, tandis que les tests d’interface de génération utilisent des réponses simulées. Le scan de l’historique Git n’a détecté aucun secret non expliqué. Ces contrôles ne constituent pas un benchmark de pertinence ou de fidélité des réponses.',
+    next: ['Construire un jeu annoté de documents et de questions pour mesurer le recall@k.', 'Évaluer la fidélité des citations, les réponses non étayées et les questions ambiguës.', 'Mesurer la latence et l’usage fournisseur sur des documents représentatifs, sans confondre tests de CI et qualité du modèle.']
+  },
   dossierpro: {
     short:'Une plateforme de gestion du recrutement qui transforme CV et informations candidats en workflows structurés et traçables.',
     eyebrow:'Produit métier / IA appliquée',categoryName:'Produits IA',status:'Code privé · Étude de cas publique',

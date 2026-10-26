@@ -19,6 +19,12 @@ const l=labs.map((lab,i)=>({...lab,...labTranslations[lang][i]}));
     <div class="case-meta"><span>{lang === 'fr' ? 'STATUT : À CONSTRUIRE' : 'STATUS: PLANNED'}</span><span>RAG / MLOPS / AI TOOLS</span></div>
   </div></section>
   <div class="shell roadmap-list">
+    <article class="roadmap-item">
+      <p class="section-id">{lang === 'fr' ? 'DÉJÀ DISPONIBLE' : 'AVAILABLE NOW'}</p>
+      <h2>Hands-on RAG Lab</h2>
+      <p>{lang === 'fr' ? 'Le laboratoire RAG est en ligne avec indexation E5 locale, recherche hybride BM25/cosinus, fusion RRF et génération NVIDIA GPT-OSS avec références. Les évaluations annotées prévues ci-dessous restent à réaliser.' : 'The RAG lab is live with local E5 indexing, hybrid BM25/cosine retrieval, RRF and NVIDIA GPT-OSS generation with references. The labeled evaluations planned below remain future work.'}</p>
+      <a class="text-link content-offset-md" href={pathFor(lang,'/projects/hands-on-rag-lab/')}>{lang === 'fr' ? 'Explorer le projet et ses preuves' : 'Explore the project and its evidence'} ↗</a>
+    </article>
     {l.map(lab=>(
       <article class="roadmap-item">
         <p class="section-id">LAB {lab.number} / {lang === 'fr' ? 'PRÉVU' : 'PLANNED'}</p>
