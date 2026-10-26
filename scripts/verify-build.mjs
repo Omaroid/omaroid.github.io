@@ -5,6 +5,7 @@ const root = 'dist/';
 const paths = [
   'index.html', 'experience/index.html', 'roadmap/index.html',
   '404.html', 'sitemap.xml', 'favicon.svg',
+  'projects/hands-on-rag-lab/index.html',
   'projects/dossierpro/index.html',
   'projects/retail-churn-copilot/index.html',
   'projects/mission-radar/index.html',
@@ -27,7 +28,7 @@ for (const path of paths) {
 
 const home = readFileSync(root + 'index.html', 'utf8');
 assert(home.includes('Des plateformes data') && home.includes('au service du réel'), 'French editorial hero not generated');
-assert(home.match(/class="editorial-project(?: archive-project)?"/g)?.length === 14, 'All 14 documented project cards expected');
+assert(home.match(/class="editorial-project(?: archive-project)?"/g)?.length === 15, 'All 15 documented project cards expected');
 assert(home.includes('PB Farmer') && home.includes('IoT Fireman'), 'IoT projects are missing from the portfolio');
 assert(home.includes('Demander l’accès') && home.includes('Voir le dépôt'), 'Repository access actions are missing');
 assert(!home.includes('NEXTAUTH_SECRET') && !home.includes('OPENAI_API_KEY'), 'Sensitive variable label in generated output');
@@ -38,6 +39,7 @@ assert(sitemap.includes('/roadmap/'), 'Roadmap missing from sitemap');
 
 const bilingualPaths = [
   'en/index.html', 'en/experience/index.html', 'en/roadmap/index.html',
+  'en/projects/hands-on-rag-lab/index.html',
   'en/projects/dossierpro/index.html', 'en/projects/retail-churn-copilot/index.html',
   'en/projects/mission-radar/index.html', 'en/projects/sa-os/index.html',
   'en/projects/lakehouse-signal/index.html', 'en/projects/pokevalue/index.html',
@@ -75,6 +77,20 @@ assert(sitemap.includes('/en/roadmap/') && sitemap.includes('/en/projects/dossie
 
 
 const frenchCase = readFileSync(root + 'projects/dossierpro/index.html', 'utf8');
+for (const prefix of ['', 'en/']) {
+  const rag = readFileSync(root + prefix + 'projects/hands-on-rag-lab/index.html', 'utf8');
+  assert(rag.includes('https://github.com/Omaroid/hands-on-rag-lab'), 'RAG public repository link missing');
+  assert(rag.includes('https://hands-on-rag-lab.vercel.app'), 'RAG live demo link missing');
+  assert(!rag.includes('mailto:'), 'Public RAG project must not require an access request');
+  for (const technology of ['multilingual-e5-small', 'BM25', 'RRF', 'GPT-OSS 20B', 'Tesseract']) {
+    assert(rag.includes(technology), 'RAG architecture missing: ' + technology);
+  }
+  const alternate = prefix ? '/projects/hands-on-rag-lab/' : '/en/projects/hands-on-rag-lab/';
+  assert(rag.includes('href="' + alternate + '"'), 'RAG language switch must retain its slug');
+  assert(sitemap.includes('/' + prefix + 'projects/hands-on-rag-lab/'), 'RAG route missing from sitemap');
+  const roadmap = readFileSync(root + prefix + 'roadmap/index.html', 'utf8');
+  assert(roadmap.includes('href="/' + prefix + 'projects/hands-on-rag-lab/"'), 'Roadmap must link to the available RAG lab');
+}
 const englishCase = readFileSync(root + 'en/projects/dossierpro/index.html', 'utf8');
 assert(frenchCase.includes('recrutement') && frenchCase.includes('Étude de cas'), 'French case-study text missing');
 assert(englishCase.includes('recruitment') && englishCase.includes('Engineering case study'), 'English case-study text missing');
@@ -198,6 +214,7 @@ for (const logo of clientLogos) {
 }
 // Project favicons are copied from actual project repositories where available.
 const projectIcons = {
+  'hands-on-rag-lab': 'svg',
   'dossierpro': 'png',
   'retail-churn-copilot': 'png',
   'mission-radar': 'svg',
@@ -228,4 +245,4 @@ for (const file of ['experience/index.html','en/experience/index.html']) {
   assert(html.includes('timeline-client-brand'), 'Client identity marks missing from ' + file);
 }
 
-console.log('Bilingual static build verified: ' + paths.length + ' core files and 14 case studies.');
+console.log('Bilingual static build verified: ' + paths.length + ' core files and 15 case studies.');

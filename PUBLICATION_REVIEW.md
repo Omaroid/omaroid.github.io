@@ -17,6 +17,8 @@ The recommendations for private repositories are provisional: this checkout cont
 
 ## Existing public repositories
 
+Hands-on RAG Lab is now public and featured, with a live Vercel demo. Its case study documents local PDF/OCR/E5 processing, hybrid retrieval, consent and source references. CI functional checks are distinguished from the labeled retrieval and answer-quality evaluations that remain to be built. Repository visibility does not establish a reuse license or guarantee abuse protection for the public generation API.
+
 | Repository | Portfolio use | Next improvement |
 | --- | --- | --- |
 | [InfoVisWorldInequality](https://github.com/Omaroid/InfoVisWorldInequality) | Strongest historical Data visualization example; already selected. | Add a concise problem, data-source/license notes, accessible chart explanation and a reproducible run path. |

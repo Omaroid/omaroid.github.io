@@ -93,6 +93,11 @@ jobs:
             if curl --fail --silent --show-error --location --max-time 12 "$SITE/?verify=${{ github.sha }}" -o /tmp/portfolio-fr.html &&
                curl --fail --silent --show-error --location --max-time 12 "$SITE/en/?verify=${{ github.sha }}" -o /tmp/portfolio-en.html &&
                curl --fail --silent --show-error --location --max-time 12 "$SITE/experience/?verify=${{ github.sha }}" -o /tmp/portfolio-experience.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/projects/hands-on-rag-lab/" -o /tmp/portfolio-rag-fr.html &&
+               curl --fail --silent --show-error --location --max-time 12 "$SITE/en/projects/hands-on-rag-lab/" -o /tmp/portfolio-rag-en.html &&
+               grep -q 'hands-on-rag-lab.vercel.app' /tmp/portfolio-rag-fr.html &&
+               grep -q 'github.com/Omaroid/hands-on-rag-lab' /tmp/portfolio-rag-en.html &&
+               grep -q 'Hands-on RAG Lab' /tmp/portfolio-fr.html &&
                grep -q 'Des plateformes data' /tmp/portfolio-fr.html &&
                grep -q 'Data platforms' /tmp/portfolio-en.html &&
                grep -q 'IoT Fireman' /tmp/portfolio-fr.html &&

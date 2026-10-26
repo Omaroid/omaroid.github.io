@@ -2,14 +2,15 @@
 
 ## Positioning
 
-The portfolio presents Omar Laraqui as a **Data & AI Tech Lead**. The six project pages describe their own user problems, architectures, implementation approaches and evidence. Forward Deployed Engineering is discussed only in the separate career roadmap; it is an aspiration, not a claimed current position or the purpose of every project.
+The portfolio presents Omar Laraqui as a **Data & AI Tech Lead**. The seven featured project pages describe their own user problems, architectures, implementation approaches and evidence. Forward Deployed Engineering is discussed only in the separate career roadmap; it is an aspiration, not a claimed current position or the purpose of every project.
 
 ## Real project favicons served from this repository
 
-The portfolio ships six favicon-sized project marks under `public/project-icons/`:
+The portfolio ships seven favicon-sized project marks under `public/project-icons/`:
 
 | Project | Origin | Asset served |
 | --- | --- | --- |
+| Hands-on RAG Lab | Original repository identity (`.github/brand/icon.svg`) | `hands-on-rag-lab.svg` |
 | DossierPro | Existing original project favicon (`public/favicon-512x512.png`) | `dossierpro.png` |
 | Retail Churn Copilot | Existing original application favicon (`client/public/favicon-192x192.png`) | `retail-churn-copilot.png` |
 | Mission Radar | Existing original dashboard favicon (`public/favicon.svg`) | `mission-radar.svg` |
@@ -17,7 +18,7 @@ The portfolio ships six favicon-sized project marks under `public/project-icons/
 | SA-OS | No favicon was found in the project's repository | `sa-os.svg` — an original editorial fallback, **not** a source favicon |
 | Lakehouse Signal | Original selected project mark | `lakehouse-signal.png` — generated project identity used by the portfolio |
 
-Only visual assets, **not private source code or secrets**, are included in the portfolio. The original PNG files are stored losslessly as checked-in Base64 under `src/assets/project-icons/`. GitHub's text-only connector required this representation. The zero-dependency `scripts/materialize-project-favicons.mjs` restores the exact PNG bytes before `astro build` and `astro dev`. All six project icons are self-hosted and accessible without a third-party dependency.
+Only visual assets, **not private source code or secrets**, are included in the portfolio. The original PNG files are stored losslessly as checked-in Base64 under `src/assets/project-icons/`. GitHub's text-only connector required this representation. The zero-dependency `scripts/materialize-project-favicons.mjs` restores the exact PNG bytes before `astro build` and `astro dev`. All seven project icons are self-hosted and accessible without a third-party dependency.
 
 ## Client and employer marks: local assets
 

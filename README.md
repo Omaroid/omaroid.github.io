@@ -2,7 +2,7 @@
 
 Bilingual professional portfolio: [French](https://omaroid.github.io/) · [English](https://omaroid.github.io/en/)
 
-The site presents 14 documented project profiles: six current product and platform case studies, plus eight IoT, data and machine-learning projects from earlier work. It also includes a résumé-based career history and a clearly labeled roadmap. Public repositories link directly to GitHub; private repositories offer an email access request. Private code, CV data and customer material are not published. The current positioning is **Data & AI Tech Lead**. Forward Deployed Engineering is a future direction, not a current job title.
+The site presents 15 documented project profiles: seven current product and platform case studies, plus eight IoT, data and machine-learning projects from earlier work. It also includes a résumé-based career history and a clearly labeled roadmap. Public repositories link directly to GitHub; private repositories offer an email access request. Private code, CV data and customer material are not published. The current positioning is **Data & AI Tech Lead**. Forward Deployed Engineering is a future direction, not a current job title.
 
 ## Stack and structure
 

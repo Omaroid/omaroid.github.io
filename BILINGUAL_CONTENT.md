@@ -39,7 +39,7 @@ npm run build
 npm run check
 ```
 
-GitHub Actions verifies both language versions, canonical URL alternates, six existing case studies, eight experience entries, EN sitemap entries and the correct present-versus-aspirational job title. Preview and mobile-browser QA are still required prior to publication.
+GitHub Actions verifies both language versions, canonical URL alternates, 15 case studies (seven featured and eight earlier projects), eight experience entries, EN sitemap entries and the correct present-versus-aspirational job title. The Hands-on RAG Lab checks cover public source/demo links, bilingual navigation and its locally hosted icon. Preview and mobile-browser QA are still required prior to publication.
 
 ## Single-site deployment
 
